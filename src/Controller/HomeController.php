@@ -11,8 +11,17 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(): Response
     {
+		$mainteance = true;
+		if ($mainteance) return $this->redirectToRoute('app_miantenance');
+		
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
         ]);
     }
+	
+	#[Route('/maintenance', name:'app_miantenance')]
+	public function maintenance(): Response
+	{
+		return $this->render('home/maintenance.html.twig');
+	}
 }

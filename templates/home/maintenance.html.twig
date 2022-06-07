@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} Maintenance{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('maintenance') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col">
+                <h1>ONG KAGNINMIN</h1>
+            </div>
+        </div>
+        <div class="row justify-content-center text-center">
+            <div class="col maintenance">
+                <h3>Site en maintenance...</h3>
+            </div>
+        </div>
+    </div>
+{% endblock %}

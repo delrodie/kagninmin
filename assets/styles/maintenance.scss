@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
+body{
+  background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url("/assets/images/bg.jpg");
+  background-size: cover;
+}
+.container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+h1{
+  font-family: 'Bebas Neue', cursive;
+  font-size: 9.9rem;
+  color: white;
+}
+h3{
+  font-family: 'Satisfy', cursive;
+  font-size: 3.5rem;
+  color: orange;
+}
