@@ -2,16 +2,104 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}ONG KAGNINMIN{% endblock %}</title>
-        <link rel="icon" href="">
+        <link rel="icon" href="{{ absolute_url(asset('build/images/favico.png')) }}">
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
     </head>
     <body class="fond d-flex h-100">
-        {% block body %}{% endblock %}
+        <div class="container body">
+            <header>
+                <section id="section-logo">
+                    <div class="row align-items-center">
+                        <div class="col-6 col-md-4 col-lg-4 logo" data-aos="zoom-out" data-aos-easing="linear" data-aos-duration="1500">
+                            <a href="#">
+                                <img src="{{ absolute_url(asset('build/images/logo.jpg')) }}" alt="Logo ONG KAGNINMIN" class="img-fluid" width="250px">
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-4 coordonnees">
+                            <div class="email"><a href="#">infos@ongkagninmin.com</a></div>
+                            <div class="tel"><a href="#">+225 00 00 000 000</a></div>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-4 bouton" data-aos="zoom-in-left" data-aos-easing="linear" data-aos-duration="1500">
+                            <a href="#" class="btn-adhesion">Adhérer</a>
+                            <a href="#" class="btn-don">Faire un don</a>
+                        </div>
+                    </div>
+                </section>
+                <section id="section-menu">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-menu" id="navbar_top">
+                        <div class="container" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1500">
+                            <a class="navbar-brand" href="#"></a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                                <ul class="navbar-nav justify-content-between align-items-center">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarPresentation" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Qui sommes-nous?
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarPresentation">
+                                            <li><a class="dropdown-item" href="#">Présentation</a></li>
+                                            <li><a class="dropdown-item" href="#">Objectif</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Actualités</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link">Actions</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link">Projets</a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarMultimedia" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Multimédia
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarMultimedia">
+                                            <li><a class="dropdown-item" href="#">Photos</a></li>
+                                            <li><a class="dropdown-item" href="#">Vidéos</a></li>
+                                            <li><a class="dropdown-item" href="#">Presse</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link">Contact</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </section>
+            </header>
+            {% block body %}{% endblock %}
+            <footer class="g-0">
+                <div class="row footer">
+                    <div class="col-8 col-md-6 copyright">
+                        &COPY; Copyright ONG KAGNINMIN | Tous droits réservés.
+                    </div>
+                    <div class="col-4 col-md-3 plansite">
+                        <a href="#">Plan du site </a>
+                    </div>
+                    <div class="col d-none d-sm-block col-md-3 backoffice">
+                        <a href="#">Backoffice</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
 
         {% block javascripts %}
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+            <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </body>

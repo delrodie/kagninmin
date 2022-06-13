@@ -1,0 +1,106 @@
+@charset "UTF-8";
+#section-domaines {
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+#section-domaines h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+#section-domaines a {
+  text-decoration: none;
+  color: white;
+}
+#section-domaines .card {
+  min-height: 180px;
+  max-height: 180px;
+  cursor: pointer;
+  background: var(--couleur-link);
+}
+#section-domaines .card .card-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-transform: uppercase;
+}
+#section-domaines .card .card-body:hover {
+  background: rgba(250, 127, 0, 0.5);
+}
+#section-domaines .card .card-body h3 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+#section-actions {
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+#section-actions h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+#section-actions .card-img-overlay {
+  background: rgba(0, 0, 0, 0.7);
+}
+#section-actions .card-img-overlay a.liresuite {
+  font-weight: bold;
+  color: var(--couleur-orange);
+}
+#section-actions .card-img-overlay a.liresuite::after {
+  font: var(--fa-font-solid);
+  content: "";
+  padding-left: 7px;
+}
+#section-actions .card-img-overlay a.liresuite:hover {
+  color: white;
+}
+#section-actions .card-img-overlay a.liresuite:hover::after {
+  font: var(--fa-font-solid);
+  content: "";
+  padding-left: 15px;
+}
+#section-actions a {
+  text-decoration: none;
+  color: black;
+}
+#section-actions a:hover {
+  color: var(--couleur-orange);
+}
+
+#section-actualites {
+  margin: 100px 50px;
+}
+#section-actualites h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+#section-actualites .card .card-title {
+  font-weight: bold;
+  color: var(--couleur-link);
+  cursor: pointer;
+}
+#section-actualites .card a.liresuite {
+  text-decoration: none;
+  color: var(--couleur-link);
+  font-weight: bold;
+}
+#section-actualites .card a.liresuite::after {
+  font: var(--fa-font-solid);
+  content: "";
+  padding-left: 7px;
+}
+#section-actualites .card a.liresuite:hover::after {
+  font: var(--fa-font-solid);
+  content: "";
+  padding-left: 15px;
+}
+
+@media screen and (max-device-width: 480px), screen and (max-width: 480px) {
+  #section-domaines .card .card-body h3 {
+    font-size: 1rem;
+  }
+}
+
+/*# sourceMappingURL=accueil.css.map */

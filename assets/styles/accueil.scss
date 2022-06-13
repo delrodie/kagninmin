@@ -1,0 +1,125 @@
+#section-domaines{
+  margin-top: 100px;
+  margin-bottom: 50px;
+  
+  h1{
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  a{
+    text-decoration: none;
+    color: white;
+  }
+
+  .card{
+    min-height: 180px;
+    max-height: 180px;
+    cursor: pointer;
+    background: var(--couleur-link);
+
+    .card-body{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      text-transform: uppercase;
+
+      &:hover{
+        background: rgba(#FA7F00, 0.5);
+      }
+
+      h3{
+        font-size: 1.3rem;
+        font-weight: bold;
+        text-align: center;
+      }
+    }
+
+  }
+}
+
+#section-actions{
+  margin-top: 100px;
+  margin-bottom: 50px;
+  h1{
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .card-img-overlay{
+    background: rgba(#000, 0.7);
+
+    a.liresuite{
+      font-weight: bold;
+      color: var(--couleur-orange);
+
+      &::after{
+        font: var(--fa-font-solid);
+        content: '\f061';
+        padding-left: 7px;
+      }
+
+      &:hover{
+        color: white;
+
+        &::after{
+          font: var(--fa-font-solid);
+          content: '\f061';
+          padding-left: 15px;
+        }
+      }
+    }
+  }
+  a{
+    text-decoration: none;
+    color: black;
+
+    &:hover{
+      color: var(--couleur-orange);
+    }
+  }
+}
+#section-actualites{
+  margin: 100px 50px;
+  h1{
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .card{
+    .card-title{
+      font-weight: bold;
+      color: var(--couleur-link);
+      cursor: pointer;
+    }
+
+    a.liresuite{
+      text-decoration: none;
+      color: var(--couleur-link);
+      font-weight: bold;
+
+      &::after{
+        font: var(--fa-font-solid);
+        content: '\f061';
+        padding-left: 7px;
+      }
+
+      &:hover{
+        &::after{
+          font: var(--fa-font-solid);
+          content: '\f0a9';
+          padding-left: 15px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-device-width: 480px), screen and (max-width: 480px) {
+  #section-domaines{
+    .card{
+      .card-body{
+        h3{
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}

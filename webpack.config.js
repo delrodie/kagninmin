@@ -27,6 +27,7 @@ Encore
      */
     .addEntry('app', './assets/app.js')
     .addEntry('maintenance', './assets/maintenance.js')
+    .addEntry('accueil', './assets/accueil.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
@@ -76,6 +77,12 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     .autoProvidejQuery()
+
+    .autoProvideVariables({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery',
+    })
 
     .configureImageRule({
         type: 'asset'
