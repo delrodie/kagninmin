@@ -6,14 +6,14 @@ document.addEventListener("DOMContentLoaded", function(){
             // add padding top to show content behind navbar
             navbar_height = document.querySelector('.navbar').offsetHeight;
             document.body.style.paddingTop = navbar_height + 'px';
-            document.getElementById('navbar_top').classList.remove('bg-transparent');
+            document.getElementById('navbar_top').classList.remove('bg-menu');
             document.getElementById('navbar_top').classList.add('bgmenu-scrol');
             topBtn.style.display = "block";
         } else {
             document.getElementById('navbar_top').classList.remove('fixed-top');
             // remove padding top from body
             document.body.style.paddingTop = '0';
-            document.getElementById('navbar_top').classList.add('bg-transparent');
+            document.getElementById('navbar_top').classList.add('bg-menu');
             document.getElementById('navbar_top').classList.remove('bgmenu-scrol');
             topBtn.style.display = "none";
         }

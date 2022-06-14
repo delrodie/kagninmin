@@ -7,7 +7,7 @@
         "/build/app.64b313a7.js"
       ],
       "css": [
-        "/build/app.c9a87027.css"
+        "/build/app.a878cf01.css"
       ]
     },
     "maintenance": {
@@ -26,6 +26,15 @@
       ],
       "css": [
         "/build/accueil.88647120.css"
+      ]
+    },
+    "page": {
+      "js": [
+        "/build/runtime.188fa053.js",
+        "/build/page.b86b3997.js"
+      ],
+      "css": [
+        "/build/page.f620b296.css"
       ]
     }
   }

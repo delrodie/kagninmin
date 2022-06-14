@@ -16,4 +16,10 @@ class MaquetteController extends AbstractController
             'controller_name' => 'MaquetteController',
         ]);
     }
+	
+	#[Route('/page', name:'app_maquette_page')]
+	public function page()
+	{
+		return $this->render('maquette/page.html.twig');
+	}
 }

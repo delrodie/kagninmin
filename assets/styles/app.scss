@@ -113,6 +113,18 @@ h1.titre-h1{
   font-size: 1.5rem;
   font-weight: bold;
 }
+figure{
+  overflow: hidden;
+  transition: .5s ease-in-out;
+
+  img{
+    cursor: pointer;
+    &:hover{
+      transform: scale(1.5);
+    }
+  }
+}
+
 footer{
   background: #150002;
   margin: 0;

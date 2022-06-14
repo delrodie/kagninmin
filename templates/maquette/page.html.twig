@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}: page{% endblock %}
+
+{% block body %}
+	<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i></a></li>
+			<li class="breadcrumb-item"><a href="#">Qui sommes-nous ?</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Présentation</li>
+		</ol>
+	</nav>
+	<div class="row mt-5">
+		<div class="col-lg-8 contenu">
+			<h2>Présentation de l'ONG</h2>
+			<figure>
+				<img src="{{ asset('build/images/bg.jpg') }}" class="img-thumbnail" alt="">
+			</figure>
+
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dolor est, egestas nec justo nec, gravida dictum urna. Sed lacinia sit amet ante sit amet suscipit. Nullam odio erat, ornare dictum vehicula sit amet, eleifend ut leo. Praesent ac aliquet augue. Duis vehicula rutrum efficitur. Curabitur nec interdum magna. Fusce ac purus est. Vivamus fermentum cursus urna et pulvinar.
+			</p>
+			<p>
+				Maecenas odio mauris, rhoncus ac iaculis vitae, mattis sit amet elit. Donec varius maximus enim, et molestie nisi semper vel. Proin at mauris suscipit, porttitor neque nec, rhoncus felis. Pellentesque at magna et quam convallis vulputate eget venenatis velit. Maecenas in rhoncus velit, eget venenatis dui. Praesent at libero vitae ligula consectetur aliquet. Suspendisse scelerisque elit in malesuada aliquam. Aliquam ligula ante, venenatis id nisi id, dignissim consectetur justo. Sed nulla dui, ornare et leo vitae, hendrerit bibendum ex. Suspendisse ac tellus maximus, laoreet lacus a, ultrices urna. Integer gravida tempor pretium. Quisque vehicula finibus laoreet. Fusce vel sem vitae leo faucibus faucibus. Pellentesque et tortor interdum, euismod odio nec, luctus velit. Fusce bibendum nibh ut urna vulputate, at bibendum felis facilisis.
+			</p>
+			<p>
+				Suspendisse euismod nulla diam, sit amet fermentum tellus dignissim vitae. Aenean luctus, erat id interdum commodo, nibh est luctus nisl, id egestas nulla ligula vitae odio. Ut at arcu a lacus consectetur volutpat ut ut dui. Aliquam quis velit malesuada, sollicitudin mi at, malesuada nibh. Etiam lacinia mi metus, ac varius libero mollis quis. Vivamus semper semper scelerisque. Nulla ac eros consectetur, venenatis tellus vitae, efficitur felis. Morbi porttitor, arcu sed pretium molestie, sem ex eleifend lacus, ac consectetur tellus metus sit amet urna. Nam vehicula neque eget orci luctus posuere. Praesent id ligula in velit vestibulum bibendum at vitae ipsum. Nulla consectetur at turpis nec viverra. Sed tincidunt egestas felis vitae pharetra. Vivamus volutpat hendrerit felis. Praesent elementum nisl eget velit dictum mollis. Cras placerat odio eget viverra elementum. Integer consectetur diam non sapien condimentum vestibulum.
+			</p>
+		</div>
+		<div class="col-lg-4">
+			<h4 class="libelle">Nous suivre </h4>
+			<div class="social-icon">
+				<a href="#" class="facebook"><i class="fab fa-facebook-square"></i></a>
+				<a href="#" class="instagram"><i class="fab fa-instagram-square"></i></a>
+				<a href="#" class="youtube"><i class="fab fa-youtube-square"></i></a>
+			</div>
+			<div id="fb-root"></div>
+			<div class="fb-page" data-href="https://www.facebook.com/ONG-Kagninmin-107759777750981" data-tabs="timeline" data-width="" data-height="900" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+				<blockquote cite="https://www.facebook.com/ONG-Kagninmin-107759777750981" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/ONG-Kagninmin-107759777750981">ONG KAGNINMIN</a></blockquote>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('page') }}
+{% endblock %}
