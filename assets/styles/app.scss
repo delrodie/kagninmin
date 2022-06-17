@@ -154,3 +154,21 @@ footer{
   80%{ transform: scale(1.5);}
   100%{ transform: scale(1.7);}
 }
+
+@media screen and (max-width: 768px) {
+  #section-logo{
+    .bouton{
+      margin-bottom: 30px;
+      margin-top: 20px;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+  #section-logo{
+    .bouton{
+      text-align: right;
+      float: right;
+    }
+  }
+}
