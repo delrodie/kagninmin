@@ -1,0 +1,52 @@
+{% set _route = app.request.attributes.get('_route') %}
+
+<header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary scrolled fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{{ asset('images/logo.jpg') }}" alt="" class="img-fluid" width="120">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1"
+                 id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+                <div class="offcanvas-header">
+                    <img src="{{ absolute_url(asset('images/logo.jpg')) }}" alt="" class="img-fluid" style="width: 180px;">
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
+                        <li class="nav-item mx-1">
+                            <a class="nav-link   {% if _route == 'app_home' %}active{% endif %}" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
+                        </li>
+                        <li class="nav-item mx-1 ">
+                            <a class="nav-link" href="presentation.html">Qui sommes-nous?</a>
+                        </li>
+                        <li class="nav-item mx-1 ">
+                            <a class="nav-link" href="domaines.html">Domaines</a>
+                        </li>
+                        <li class="nav-item mx-1 ">
+                            <a class="nav-link" href="#">Programmes</a>
+                        </li>
+                        <li class="nav-item mx-1 ">
+                            <a class="nav-link" href="actualites.html">Actualités</a>
+                        </li>
+                        <li class="nav-item mx-1 ">
+                            <a class="nav-link" href="galerie.html" target="">Galerie</a>
+                        </li>
+
+                        <li class="nav-item mx-1 ">
+                            <a href="contact.html" class="nav-link" target="">Contact</a>
+                        </li>
+                    </ul>
+                    <a href="#" class="nav-cta">
+                        ❤️ Faire un Don
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+</header>
