@@ -8,7 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 
-#[AdminDashboard(routePath: '/backend', routeName: 'admin')]
+#[AdminDashboard(routePath: '/backend', routeName: 'app_admin')]
 class DashboardController extends AbstractDashboardController
 {
     public function index(): Response
@@ -42,5 +42,14 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::section();
         yield MenuItem::linkTo(SlideCrudController::class, 'Sliders', 'fa-solid fa-images');
+
+        if ($this->isGranted('ROLE_ADMIN')){
+            yield MenuItem::section();
+            yield MenuItem::section('Sécurité');
+            yield MenuItem::linkTo(UserCrudController::class, 'Utilisateurs', 'fa-solid fa-lock')
+                ->setPermission('ROLE_ADMIN')
+            ;
+        }
+
     }
 }
