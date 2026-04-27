@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ONG KAGNINMIN — Culture · Éducation · Autonomisation{% endblock %}</title>
+    <link rel="icon" href="{{ absolute_url(asset('images/facion_logo.png')) }}">
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap">
+        <style>
+
+            body{
+                background: url("{{ absolute_url(asset('images/fond.png')) }}");
+                background-size: cover;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+            /*.container{*/
+            /*    position: absolute;*/
+            /*    top: 50%;*/
+            /*    left: 50%;*/
+            /*    transform: translate(-50%, -50%);*/
+            /*}*/
+            h1{
+                font-family: 'Bebas Neue', cursive;
+                font-size: 9.9rem;
+                color: white;
+                margin: 0 auto;
+            }
+            h3{
+                font-family: 'Satisfy', cursive;
+                font-size: 3.5rem;
+                color: orange;
+                text-align: center;
+                margin: 0 auto;
+            }
+        </style>
+    {% endblock %}
+
+</head>
+<body>
+<div class="container">
+    <div class="">
+        <h1>ONG KAGNINMIN</h1>
+        <h3>Site en maintenance...</h3>
+    </div>
+
+</div>
+</body>
+</html>

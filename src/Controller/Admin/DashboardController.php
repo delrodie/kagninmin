@@ -42,6 +42,11 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::section();
         yield MenuItem::linkTo(SlideCrudController::class, 'Sliders', 'fa-solid fa-images');
+        // <i class="fa-solid fa-person-digging"></i>
+
+        yield MenuItem::section();
+        yield MenuItem::section('Paramètre');
+        yield MenuItem::linkTo(MaintenanceCrudController::class, 'Maintenance', 'fa-solid fa-person-digging');
 
         if ($this->isGranted('ROLE_ADMIN')){
             yield MenuItem::section();
