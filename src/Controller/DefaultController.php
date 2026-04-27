@@ -5,13 +5,17 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Repository\MaintenanceRepository;
+use App\Repository\SlideRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 class DefaultController extends AbstractController
 {
-    public function __construct(private MaintenanceRepository $maintenanceRepository)
+    public function __construct(
+        private MaintenanceRepository $maintenanceRepository,
+        private SlideRepository $slideRepository
+    )
     {
     }
 
@@ -21,11 +25,13 @@ class DefaultController extends AbstractController
         if ($this->maintenanceRepository->findOneBy(['isActif' => true],['id' => "DESC"])){
             return $this->redirectToRoute('app_maintenance');
         }
-        return $this->render('frontend/home.html.twig');
+        return $this->render('frontend/home.html.twig',[
+            'slides' => $this->slideRepository->findBy(['isValid' => true],['id' => "DESC"]),
+        ]);
     }
 
     #[Route('/maintenance', name: 'app_maintenance')]
-    public function maintenance()
+    public function maintenance(): Response
     {
         if ($this->maintenanceRepository->findBy(['isActif' => false],['id' => "DESC"])){
             return $this->redirectToRoute('app_home');

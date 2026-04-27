@@ -5,65 +5,27 @@
             <div id="sliderCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
 
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
+                    {% for slide in slides %}
+                        <div class="carousel-item {{ loop.first ? 'active' : ''}}">
 
-                        <div class="carousel-image">
-                            <img src="./assets/images/slides/Image8.jpg" class="d-block w-100" alt="...">
-                            <div class="overlay"></div>
-                        </div>
+                            <div class="carousel-image">
+                                <img src="{{ absolute_url(asset('uploads/slide/' ~ slide.media)) }}" class="d-block w-100" alt="...">
+                                <div class="overlay"></div>
+                            </div>
 
-                        <div class="carousel-caption carousel-caption-container">
-                            <h2 class="carousel-caption__title"><span
-                                    class="bg-terra-gradient ps-3 pe-5">Autonomisation</span> </h2>
-                            <p class="carousel-caption__description">
-                                Plus de 40 jeunes filles, formées à l'autonomisation économique
-                            </p>
-                            <a href="#" class="btn btn-terra-dark btn-gd rounded-0 mt-3">Découvrir</a>
-                            <a href="#" class="btn btn-outline-terra btn-gd rounded-0 mt-3">Nous soutenir</a>
-                        </div>
-
-                    </div>
-                    <div class="carousel-item">
-
-                        <div class="carousel-image">
-                            <img src="./assets/images/slides/Image15.jpg" class="d-block w-100" alt="...">
-                            <div class="overlay"></div>
-                        </div>
-
-                        <div class="carousel-caption carousel-caption-container">
-                            <div class="container">
+                            <div class="carousel-caption carousel-caption-container">
                                 <h2 class="carousel-caption__title"><span
-                                        class="bg-terra-gradient ps-3 pe-5">Culture</span></h2>
-                                <p class="carousel-caption__description">
-                                    Transmission de savoirs et de valeurs culturelles locales...
-                                </p>
-                                <a href="#" class="btn btn-terra-dark btn-gd rounded-0 mt-3">Decouvrir</a>
-                                <a href="#" class="btn btn-outline-terra btn-gd rounded-0 mt-3">Nous soutenir</a>
+                                        class="bg-terra-gradient ps-3 pe-5">{{ slide.titre }}</span> </h2>
+                                <p class="carousel-caption__description"> {{ slide.description}} </p>
+                                {% if slide.url %}
+                                    <a href="{{ slide.url }}" class="btn btn-terra-dark btn-gd rounded-0 mt-3">Découvrir</a>
+                                {% endif %}
+                                <!--<a href="#" class="btn btn-outline-terra btn-gd rounded-0 mt-3">Nous soutenir</a>-->
                             </div>
 
                         </div>
+                    {% endfor %}
 
-                    </div>
-                    <div class="carousel-item">
-
-                        <div class="carousel-image">
-                            <img src="./assets/images/slides/Image7.jpg" class="d-block w-100" alt="...">
-                            <div class="overlay"></div>
-                        </div>
-
-                        <div class="carousel-caption carousel-caption-container">
-                            <h2 class="carousel-caption__title"><span class="bg-terra-gradient">Education</span></h2>
-                            <p class="carousel-caption__description">
-                                Formation à la confection des goûters traditionnales générateurs de revenus
-                            </p>
-                            <a href="#" class="btn btn-terra-dark btn-gd rounded-0 mt-3">Découvrir</a>
-                            <a href="#" class="btn btn-outline-terra btn-gd rounded-0 mt-3">Nous soutenir</a>
-                        </div>
-                        <div class="btn-link">
-
-                        </div>
-
-                    </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#sliderCarousel"
                         data-bs-slide="prev">
