@@ -1,0 +1,25 @@
+{% if apropos %}
+    <div class="row g-4 mt-3">
+        <div class="col-lg-5">
+            <div class="illustration position-relative">
+                <figure class=" animate__animated animate__slideInUp animate__slow" data-animate="animate__slideInUp" data-duration="2.5s">
+                    <img src="{{ absolute_url(asset('uploads/apropos/' ~ apropos.media1)) }}" alt="ONG KAGNINMIN"
+                         class="img-fluid img-left" data-parallax="1" loading="lazy">
+                </figure>
+
+                <figure class="" data-duration="1.0s">
+                    <img src="{{ absolute_url(asset('uploads/apropos/' ~ apropos.media2)) }}" alt="ONG KAGNINMIN"
+                         class="img-fluid img-right animate__animated" data-animate="animate__slideInUp" data-animate="1.5s" data-parallax="-1" loading="lazy">
+                </figure>
+
+            </div>
+        </div>
+        <div class="col-lg-6 offset-lg-1 animate__animated" data-animate="animate__slideInUp">
+            <h4 class="section-title color-terra-dark fs-2 mb-3">{{apropos.titre}}</h4>
+            <div class="page-content">
+                {{ apropos.contenu|raw }}
+            </div>
+        </div>
+    </div>
+
+{% endif %}

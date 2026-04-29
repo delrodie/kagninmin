@@ -46,6 +46,14 @@ class DashboardController extends AbstractDashboardController
         // <i class="fa-solid fa-person-digging"></i>
 
         yield MenuItem::section();
+        yield MenuItem::section('Qui sommes-nous?');
+        yield MenuItem::linkTo(AccueilAproposCrudController::class, 'Accueil', 'fa-solid fa-chalkboard');
+        yield MenuItem::linkTo(AproposCrudController::class, 'Présentation', 'fa-solid fa-person-chalkboard');
+        yield MenuItem::linkTo(MissionCrudController::class, 'Notre mission', 'fa-solid fa-rocket');
+        yield MenuItem::linkTo(VisionCrudController::class, 'Notre vision', 'fa-solid fa-arrows-to-eye');
+        yield MenuItem::linkTo(ValeurCrudController::class, 'Nos valeurs', 'fa-solid fa-chess-knight');
+
+        yield MenuItem::section();
         yield MenuItem::section('Paramètre');
         yield MenuItem::linkTo(MaintenanceCrudController::class, 'Maintenance', 'fa-solid fa-person-digging');
 

@@ -1,0 +1,132 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ONG KAGNINMIN{% endblock %}
+
+{% block turbo_frame %}
+    <turbo-frame id="main">
+        {% block body %}
+            <main>
+
+                <section class="page-title cover-background">
+                    <div class="container">
+                        <div class="row align-items-center small-screen">
+                            <div class="col-12 col-md-8">
+                                <h4 class="fw-semibold color-gold animate__animated animate__slideInUp ">Qui sommes-nous?</h4>
+
+                                <h1 class="fw-bold color-terra-dark animate__titre">
+                                    ONG KAGNINMIN
+                                </h1>
+                            </div>
+                            <div class="col-md-4 d-none d-md-block">
+                                <div class="animate__animated animate__zoomIn">
+                                    <figure>
+                                        <img src="{{ absolute_url(asset('images/autonomisation-circulaire.png')) }}" alt=""
+                                             class="img-fluid">
+                                    </figure>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="page margin-section" id="page">
+                    <div class="container">
+
+                        <!-- Présentation -->
+                        <div {{ stimulus_controller('apropos-loader',{url: path('app_presentation_widget',{'slug' : 'apropos'})}) }}>
+                            <div data-apropos-loader-target="content">
+                                <div class="text-center p-5">
+                                    <div class="spinner-border text-warning" role="apropos">
+                                        <span class="visually-hidden">Chargement de la présentation...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row vision" data-animate="animate__slideInUp">
+                            <div class="col-md-6">
+                                <div {{ stimulus_controller('apropos-loader',{url: path('app_presentation_widget',{'slug': 'mission'})}) }}>
+                                    <div data-apropos-loader-target="content">
+                                        <div class="text-center p-5">
+                                            <div class="spinner-border text-warning" role="mission">
+                                                <span class="visually-hidden">Chargement de la mission...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card border-0 bg-transparent h-100 p-0">
+
+                                    <div {{ stimulus_controller('apropos-loader',{url: path('app_presentation_widget',{'slug': 'vision'})}) }}>
+                                        <div data-apropos-loader-target="content">
+                                            <div class="text-center p-5">
+                                                <div class="spinner-border text-warning" role="vision">
+                                                    <span class="visually-hidden">Chargement de la vision...</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div {{ stimulus_controller('apropos-loader',{url: path('app_presentation_widget',{'slug': 'valeur'})}) }}>
+                                        <div data-apropos-loader-target="content">
+                                            <div class="text-center p-5">
+                                                <div class="spinner-border text-warning" role="valeur">
+                                                    <span class="visually-hidden">Chargement de nos valeurs...</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <div {{ stimulus_controller('partenaire-loader',{ url: path('app_partenaire_list')}) }}>
+                    <div data-partenaire-loader-target="content">
+                        <div class="text-center p-5">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Chargement des partenaires...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        {% endblock %}
+    </turbo-frame>
+
+{% endblock %}
+
+{% block extra_javascripts %}
+    {{ parent() }}
+    <script>
+        window.addEventListener('scroll', function () {
+            const parallaxElements = document.querySelectorAll('.parallax-img');
+
+            parallaxElements.forEach(el => {
+                // On récupère la position de l'élément par rapport à la fenêtre
+                const rect = el.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+
+                // On vérifie si l'élément est visible à l'écran
+                if (rect.top <= windowHeight && rect.bottom >= 0) {
+                    // On récupère la vitesse personnalisée via l'attribut data-speed
+                    const speed = el.getAttribute('data-speed') || 0.2;
+
+                    // Calcul du décalage : on multiplie la position par la vitesse
+                    // Le "-" permet de monter quand on scroll vers le bas
+                    const yPos = -(rect.top * speed);
+
+                    el.style.transform = `translateY(${yPos}px)`;
+                }
+            });
+        });
+    </script>
+{% endblock %}

@@ -23,7 +23,9 @@
 
         {% include('frontend/_header.html.twig') %}
 
-        {% block body %}{% endblock %}
+        {% block turbo_frame %}
+            {% block body %}{% endblock %}
+        {% endblock %}
 
         <footer>
             <div class="container">
@@ -120,5 +122,6 @@
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
                 crossorigin="anonymous"></script>
+        {% block extra_javascripts %}{% endblock %}
     </body>
 </html>

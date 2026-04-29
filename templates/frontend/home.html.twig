@@ -148,49 +148,52 @@
                     <div class="col">
                         <div class="section-label color-gold-light fw-semibold">Qui sommes-nous?</div>
                         <h4 class="section-title color-sand mt-3 fs-2">Porteurs d'un idéal commun</h4>
-                        <div class="card p-3 mt-3">
-                            <div class="card-body">
-                                <h4 class="card-title">Notre mission</h4>
-                                <p class="card-text">
-                                    L’ONG KAGNINMIN a pour objet d’une part, de mener des actions tendant à faire
-                                    découvrir et valoriser le riche patrimoine
-                                    culturel et touristique de la Côte d’Ivoire tant au niveau national, régional
-                                    qu’international et d’autre part, à mener
-                                    tous types d’actions au niveau social, économique et environnemental ayant pour but
-                                    l’amélioration des conditions de
-                                    vies des populations.
-                                </p>
+
+                        <!-- Mission -->
+                        <div {{ stimulus_controller('apropos-loader', {url: path('app_presentation_widget', {slug: 'accueil_mission'})}) }}>
+                            <div data-apropos-loader-target="content">
+                                <div class="text-center p-5">
+                                    <div class="spinner-border text-warning" role="mission">
+                                        <span class="visually-hidden">Chargement de la mission...</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="card p-3 mt-3">
-                            <div class="card-body">
-                                <h4 class="card-title">Notre vision</h4>
-                                <p class="card-text">
-                                    Une Côte d'Ivoire où chaque femme et jeune fille vit dans la dignité, la liberté et
-                                    l'égalité des chances.
-
-                                </p>
+                        <!-- Vision -->
+                        <div {{ stimulus_controller('apropos-loader',{url: path('app_presentation_widget',{slug: 'accueil_vision'})}) }}>
+                            <div data-apropos-loader-target="content">
+                                <div class="text-center p-5">
+                                    <div class="spinner-border text-warning" role="vision">
+                                        <span class="visually-hidden">Chargement de la vision...</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="card p-3 mt-3">
-                            <div class="card-body">
-                                <h4 class="card-title">Nos valeurs</h4>
-                                <p class="card-text">
-                                    Dignité humaine, inclusion, transparence, solidarité et ancrage communautaire.
-
-                                </p>
+                        <!-- Valeurs -->
+                        <div {{ stimulus_controller('apropos-loader',{url: path('app_presentation_widget', {slug: 'accueil_valeur'})}) }}>
+                            <div data-apropos-loader-target="content">
+                                <div class="spinner-border text-warning" role="valeur">
+                                    <span class="visually-hidden">Chargement des valeurs...</span>
+                                </div>
                             </div>
                         </div>
+
 
                     </div>
                     <div class="col">
 
                         <!--<h4 class="section-title color-sand mt-3 fs-2">Nos domaines d'interventions</h4>-->
 
-                        <div class="kakemono text-center">
-                            <img src="./assets/images/kakemono.png" alt="" class="img-fluid" data-parallax="-2">
+                        <div {{ stimulus_controller('apropos-loader',{url: path('app_presentation_widget',{slug: 'illustration'})}) }}>
+                            <div data-apropos-loader-target="content">
+                                <div class="text-center p-5">
+                                    <div class="spinner-border text-warning">
+                                        <div class="visually-hidden">Chargement de l'illustration...</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                     </div>

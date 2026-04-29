@@ -3,7 +3,7 @@
 <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary scrolled fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{ absolute_url(path('app_home')) }}" data-turbo="false">
                 <img src="{{ asset('images/logo.jpg') }}" alt="" class="img-fluid" width="120">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
@@ -19,10 +19,10 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
                         <li class="nav-item mx-1">
-                            <a class="nav-link   {% if _route == 'app_home' %}active{% endif %}" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
+                            <a class="nav-link   {% if _route == 'app_home' %}active{% endif %}" aria-current="page" href="{{ path('app_home') }}" data-turbo="false">Accueil</a>
                         </li>
                         <li class="nav-item mx-1 ">
-                            <a class="nav-link" href="presentation.html">Qui sommes-nous?</a>
+                            <a class="nav-link {% if _route == 'app_presentation_index' %}active{% endif %}" href="{{ absolute_url(path('app_presentation_index')) }}">Qui sommes-nous?</a>
                         </li>
                         <li class="nav-item mx-1 ">
                             <a class="nav-link" href="domaines.html">Domaines</a>

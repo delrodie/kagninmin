@@ -1,13 +1,40 @@
 import './stimulus_bootstrap.js';
+import './js/scroll-animate.js';
+import './styles/app.css';
+import './styles/btn-top.css';
+import './styles/responsive.css';
 
-// JavaScript
+function initAnimations() {
+    // Réinitialise les éléments animate.css
+    document.querySelectorAll('.animate__animated').forEach(el => {
+        // Force le re-déclenchement en retirant puis remettant les classes
+        el.style.animationPlayState = 'paused';
+        void el.offsetWidth; // Reflow trick
+        el.style.animationPlayState = 'running';
+    });
+}
 
-/*  Button Go Top */
-const btnGoTop = document.querySelector(".btn-gotop");
-const navbar = document.querySelector(".navbar");
-const sticky = navbar.offsetTop;
+function initNavbar() {
+    const btnGoTop = document.querySelector(".btn-gotop");
+    const navbar = document.querySelector(".navbar");
 
-window.addEventListener("scroll", () => {
+    if (!btnGoTop || !navbar) return;
+
+    // Nettoie les anciens listeners pour éviter les doublons
+    window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
+
+    btnGoTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+}
+
+function handleScroll() {
+    const btnGoTop = document.querySelector(".btn-gotop");
+    const navbar = document.querySelector(".navbar");
+
+    if (!btnGoTop || !navbar) return;
+
     if (window.scrollY > 100) {
         btnGoTop.style.display = "block";
         navbar.classList.add("fixed-top");
@@ -15,20 +42,10 @@ window.addEventListener("scroll", () => {
         btnGoTop.style.display = "none";
         navbar.classList.remove("fixed-top");
     }
+}
+
+// Déclenché à chaque navigation Turbo ET au premier chargement
+document.addEventListener("turbo:load", () => {
+    initNavbar();
+    initAnimations();
 });
-
-btnGoTop.addEventListener("click", () => {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-    });
-});
-
-
-
-
-import './styles/app.css';
-import './styles/btn-top.css';
-import './styles/responsive.css';
-
-console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
