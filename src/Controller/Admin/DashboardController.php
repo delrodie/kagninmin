@@ -42,6 +42,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::section();
         yield MenuItem::linkTo(SlideCrudController::class, 'Sliders', 'fa-solid fa-images');
+        yield MenuItem::linkTo(PartenaireCrudController::class, 'Partenaires', 'fa-solid fa-handshake');
         // <i class="fa-solid fa-person-digging"></i>
 
         yield MenuItem::section();

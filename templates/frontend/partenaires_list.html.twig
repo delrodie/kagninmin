@@ -1,0 +1,23 @@
+<section class="partenaires section-margin" id="partenaires">
+    <div class="container text-center">
+        <div class="section-label color-gold fw-semibold">Ils nous font confiance</div>
+        <h4 class="section-title color-terra-dark mt-3 fs-2">Nos Partenaires</h4>
+        <p>Ensemble, nous construisons un impact plus grand et plus durable pour les communautés que nous
+            servons.
+        </p>
+
+        <div
+            class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-4 d-flex justify-content-center align-items-center align-content-center partenaires-logo">
+            {% for partenaire in partenaires %}
+                <div class="col">
+                    <div class="ratio ratio-4x3">
+                        <img src="{{ absolute_url(asset('uploads/partenaires/' ~ partenaire.media)) }}" alt="{{ partenaire.nom }}" class="img-fluid object-fit-contain">
+                    </div>
+
+                </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>

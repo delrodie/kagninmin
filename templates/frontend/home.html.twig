@@ -279,32 +279,17 @@
             </div>
         </section>
 
-        <section class="partenaires section-margin" id="partenaires">
-            <div class="container text-center">
-                <div class="section-label color-gold fw-semibold">Ils nous font confiance</div>
-                <h4 class="section-title color-terra-dark mt-3 fs-2">Nos Partenaires</h4>
-                <p>Ensemble, nous construisons un impact plus grand et plus durable pour les communautés que nous
-                    servons.
-                </p>
-
-                <div
-                    class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-4 d-flex justify-content-center align-items-center align-content-center partenaires-logo">
-                    <div class="col">
-                        <div class="ratio ratio-4x3">
-                            <img src="./assets/images/partenaires/MFFE.jpg" alt="" class="img-fluid object-fit-contain">
-                        </div>
-
+        <div {{ stimulus_controller('partenaire-loader',{ url: path('app_partenaire_list')}) }}>
+            <div data-partenaire-loader-target="content">
+                <div class="text-center p-5">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Chargement des partenaires...</span>
                     </div>
-                    <div class="col">
-                        <div class="ratio ratio-4x3">
-                            <img src="./assets/images/partenaires/UNESCO.png" alt=""
-                                 class="img-fluid object-fit-contain">
-                        </div>
-                    </div>
-
                 </div>
-
             </div>
-        </section>
+        </div>
+
+
+{#        {{ render(controller('App\\Controller\\PartenaireController::widget')) }}#}
     </main>
 {% endblock %}
