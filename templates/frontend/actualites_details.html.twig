@@ -1,0 +1,130 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ actualite ? actualite.titre }}{% endblock %}
+
+{% block turbo_frame %}
+    <turbo-frame id="main">
+        {% block body %}
+            <main>
+                <section class="page-title cover-background">
+                    <div class="container">
+                        <div class="row align-items-center small-screen">
+                            <div class="col-12 col-md-8">
+                                <h4 class="fw-semibold color-gold animate__animated animate__slideInUp ">Nos actions</h4>
+
+                                <h1 class="animate__titre  fw-bold color-terra-dark">
+                                    {{ actualite.domaine ? actualite.domaine.titre }}
+                                </h1>
+                            </div>
+                            <div class="col-md-4 d-none d-md-block">
+                                <div class="animate__animated " data-animate="animate__zoomIn" data-parallax="0.3" data-duration="2.0s">
+                                    <figure>
+                                        <img src="{{ absolute_url(asset('images/autonomisation-circulaire.png')) }}" alt=""
+                                             class="img-fluid">
+                                    </figure>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+
+                <section class="page margin-section w-lg-80" id="page">
+                    <div class="container w-xl-80">
+
+                        <div class="page-content mt-5">
+                            <h4 class="mb-4">{{ actualite.titre }}</h4>
+
+                            <div id="carouselActualite" class="carousel slide mb-5" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    {% if actualite.media %}
+                                        <div class="carousel-item active">
+                                            <div class="ratio ratio-16x9">
+                                                <figure class="overflow-hidden">
+                                                    <img src="{{ absolute_url(asset('uploads/actualites/' ~ actualite.media)) }}" alt="{{ actualite.titre }}" class="img-fluid img-thumbnail w-100 object-fit-cover">
+                                                </figure>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                    {% for photo in actualite.photos|slice(0,3) %}
+                                        <div class="carousel-item ratio ratio-16x9">
+                                            <figure class="overflow-hidden">
+                                                <img src="{{ asset('uploads/photos/'~ photo.media) }}" alt="" class="img-fluid img-thumbnail w-100 object-fit-cover">
+                                            </figure>
+                                        </div>
+                                    {% endfor %}
+
+
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselActualite" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselActualite" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+
+
+                            {{ actualite.contenu|raw }}
+
+                            {% if actualite.photos|length > 0 %}
+                                <div class="mt-5 text-end">
+                                    <a href="#" class="text-end text-decoration-none color-terra fst-italic">Voir les photos...</a>
+                                </div>
+                            {% endif %}
+
+                            {% if autres_actions|length > 0 %}
+                                <div class="mt-5">
+                                    <h5 class="fw-semibold color-terra-dark border-bottom">Autres actions</h5>
+                                </div>
+                                <div class="row row-cols-2 mt-3 autre-actualite">
+                                    {% for action in autres_actions|slice(0,2) %}
+                                        <div class="col">
+                                            <a href="{{ path('app_actualite_details', {'slug': action.slug}) }}" class="text-decoration-none">
+                                                <div class="card card-brown border-0 h-100">
+                                                    <div class="row g-0">
+                                                        <div class="col-md-4">
+                                                            <img src="{{ absolute_url(asset('uploads/actualites/' ~ action.media )) }}" class="img-fluid rounded-start" alt="...">
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <div class="card-body">
+                                                                <h6 class="card-title">{{action.titre }}</h6>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    {% endfor %}
+
+                                </div>
+                            {% endif %}
+
+
+                        </div>
+                    </div>
+                </section>
+
+
+
+                <div {{ stimulus_controller('partenaire-loader',{ url: path('app_partenaire_list')}) }} style="margin-top: 100px;">
+                    <div data-partenaire-loader-target="content">
+                        <div class="text-center mt-5 p-5">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Chargement des partenaires...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        {% endblock %}
+    </turbo-frame>
+{% endblock %}
+

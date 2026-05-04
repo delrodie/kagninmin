@@ -25,7 +25,7 @@
                             <a class="nav-link {% if _route == 'app_presentation_index' %}active{% endif %}" href="{{ absolute_url(path('app_presentation_index')) }}">Qui sommes-nous?</a>
                         </li>
                         <li class="nav-item mx-1 ">
-                            <a class="nav-link" href="domaines.html">Domaines</a>
+                            <a class="nav-link {% if _route == 'app_domaine_index' %}active{% endif %} " href="{{ absolute_url(path('app_domaine_index')) }}">Domaines</a>
                         </li>
                         <li class="nav-item mx-1 ">
                             <a class="nav-link" href="#">Programmes</a>

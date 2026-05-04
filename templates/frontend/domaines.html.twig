@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos domaines d'actions{% endblock %}
+
+{% block turbo_frame %}
+    <turbo-frame id="main">
+        {% block body %}
+            <main>
+
+
+                <section class="page-title cover-background">
+                    <div class="container">
+                        <div class="row align-items-center small-screen">
+                            <div class="col-12 col-md-8">
+                                <h4 class="fw-semibold color-gold animate__animated animate__slideInUp ">Ce que nous faisons</h4>
+
+                                <h1 class="animate__titre  fw-bold color-terra-dark">
+                                    Domaines d'interventions
+                                </h1>
+                            </div>
+                            <div class="col-md-4 d-none d-md-block">
+                                <div class="animate__animated " data-animate="animate__zoomIn" data-parallax="0.3" data-duration="2.0s">
+                                    <figure>
+                                        <img src="{{ absolute_url(asset('images/autonomisation-circulaire.png')) }}" alt=""
+                                             class="img-fluid">
+                                    </figure>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="domaines margin-section " id="domaines">
+                    <div class="container">
+
+                        <h4 class="section-title color-terra-dark mt-3 fs-2">Nos domaines</h4>
+
+                        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3">
+                            {% for domaine in domaines %}
+                                {% set duree = loop.index is even ? '2.0s' : '1.5s' %}
+                                <div class="col animate__animated " data-animate="animate__slideInUp" data-duration="{{ duree }}">
+                                    <div class="card h-100 card-brown border-0">
+                                        <div class="card-body p-5">
+                                            <h5 class="card-title font-jakarta fw-bold">{{ domaine.titre }}</h5>
+                                            <div class="card-text mt-3 text-justify">
+                                                {{ domaine.contenu|raw }}
+                                            </div>
+                                            {% if domaine.actualites|length > 0 %}
+                                                <a href="{{ absolute_url(path('app_domaine_details',{"slug" : domaine.slug})) }}" class="card-link mt-5 text-decoration-none">Nos actions <i
+                                                        class="bi bi-arrow-right"></i></a>
+                                            {% endif %}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+
+                        </div>
+                    </div>
+                </section>
+
+
+                <div {{ stimulus_controller('partenaire-loader',{ url: path('app_partenaire_list')}) }}>
+                    <div data-partenaire-loader-target="content">
+                        <div class="text-center p-5">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Chargement des partenaires...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        {% endblock %}
+    </turbo-frame>
+{% endblock %}
+
