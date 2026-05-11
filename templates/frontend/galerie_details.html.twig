@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos actualités{% endblock %}
+
+{% block turbo_frame %}
+    <turbo-frame id="main">
+        {% block body %}
+            <main>
+                <section class="page-title cover-background">
+                    <div class="container">
+                        <div class="row align-items-center small-screen">
+                            <div class="col-12 col-md-8">
+                                <h4 class="fw-semibold color-gold animate__animated animate__slideInUp ">Galerie</h4>
+
+                                <h1 class="animate__titre  fw-bold color-terra-dark">
+                                    Albums photo
+                                </h1>
+                            </div>
+                            <div class="col-md-4 d-none d-md-block">
+                                <div class="animate__animated " data-animate="animate__zoomIn" data-parallax="0.3" data-duration="2.0s">
+                                    <figure>
+                                        <img src="{{ absolute_url(asset('images/autonomisation-circulaire.png')) }}" alt=""
+                                             class="img-fluid">
+                                    </figure>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="galerie" id="galerie">
+                    <div class="container animate__animated" data-animate="animate__slideInUp" data-duration="2.0s">
+
+                        <div class="my-5">
+                            <h5 class="color-terra-dark">{{ actualite.titre }}</h5>
+                        </div>
+
+                        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 my-3">
+
+                            {% for photo in actualite.photos %}
+                                <div class="col">
+                                    <a href="{{ absolute_url(asset('uploads/photos/' ~ photo.media)) }}" data-fancybox="gallery" data-caption="{{ photo.legende }}"
+                                       class="ratio ratio-4x3">
+                                        <img src="{{ absolute_url(asset('uploads/photos/' ~ photo.media)) }}" alt="{{ photo.legende }}" class="object-fit-cover" />
+                                    </a>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+                </section>
+
+
+
+                <div {{ stimulus_controller('partenaire-loader',{ url: path('app_partenaire_list')}) }} style="margin-top: 100px;">
+                    <div data-partenaire-loader-target="content">
+                        <div class="text-center mt-5 p-5">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Chargement des partenaires...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        {% endblock %}
+    </turbo-frame>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1/dist/fancybox/fancybox.css" />
+{% endblock %}
+
+{% block extra_javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1/dist/fancybox/fancybox.umd.js"></script>
+    <script>
+        Fancybox.bind("[data-fancybox]", {
+            // Your custom options
+        });
+    </script>
+{% endblock %}
