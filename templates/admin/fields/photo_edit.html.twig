@@ -1,0 +1,30 @@
+{# templates/admin/fields/photo_edit.html.twig #}
+
+{% for photo in field.value %}
+    <div class="photo-edit-item border rounded p-3 mb-3 bg-light">
+        <div class="row">
+            {# Miniature #}
+            <div class="col-md-3">
+                {% if photo.media %}
+                    <img src="{{ asset('uploads/photos/' ~ photo.media) }}"
+                         class="img-fluid rounded"
+                         style="max-height: 120px; object-fit: cover;"
+                         alt="Photo">
+                {% endif %}
+            </div>
+
+            {# Formulaire de légende + remplacement #}
+            <div class="col-md-9">
+                {{ form_row(form.children[field.value|length > 1 ? loop.index0 : loop.index0].legende) }}
+                {{ form_row(form.children[field.value|length > 1 ? loop.index0 : loop.index0].mediaFile, {
+                    label: 'Remplacer la photo'
+                }) }}
+            </div>
+        </div>
+
+        {# Bouton supprimer #}
+        <div class="text-end mt-2">
+            {{ form_row(form.children[field.value|length > 1 ? loop.index0 : loop.index0]._token) }}
+        </div>
+    </div>
+{% endfor %}

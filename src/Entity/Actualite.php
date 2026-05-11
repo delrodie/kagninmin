@@ -233,4 +233,9 @@ class Actualite
         $slug = strtolower(new AsciiSlugger()->slug($this->getTitre()));
         return $this->setSlug($slug);
     }
+
+    public function __toString(): string
+    {
+        return $this->titre;
+    }
 }

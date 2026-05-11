@@ -57,7 +57,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Gestion');
         yield MenuItem::linkTo(DomaineCrudController::class, 'Domaine', 'fa-solid fa-globe');
         yield MenuItem::linkTo(ActualiteCrudController::class, 'Actualités', 'fa-regular fa-newspaper');
-        yield MenuItem::linkTo(AccueilAproposCrudController::class, 'Galerie', 'fa-solid fa-globe');
+        yield MenuItem::linkTo(PhotoCrudController::class, 'Galerie', 'fa-solid fa-globe');
 
         yield MenuItem::section();
         yield MenuItem::section('Paramètre');

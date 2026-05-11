@@ -20,6 +20,7 @@ final class MultipleFileField implements FieldInterface
                 'multiple' => true,
                 'data_class' => null,
                 'required' => false,
+                'attr' => ['accept' => 'image/*'],
             ]);
     }
 }

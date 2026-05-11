@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ domaine ? domaine.titre }}{% endblock %}
+{% block title %}Nos actualités{% endblock %}
 
 {% block turbo_frame %}
     <turbo-frame id="main">
@@ -13,7 +13,7 @@
                                 <h4 class="fw-semibold color-gold animate__animated animate__slideInUp ">Nos actions</h4>
 
                                 <h1 class="animate__titre  fw-bold color-terra-dark">
-                                    {{ domaine ? domaine.titre }}
+                                    Actualités
                                 </h1>
                             </div>
                             <div class="col-md-4 d-none d-md-block">
@@ -35,7 +35,8 @@
                     <div class="container animate__animated" data-animate="animate__slideInUp" data-duration="2.0s">
 
                         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3">
-                            {% for actualite in actualites  %}
+
+                            {% for actualite in actualites %}
                                 <div class="col">
                                     <div class="card h-100 rounded-0 border-0 shadow">
                                         <figure class="overflow-hidden position-relative">
@@ -51,23 +52,34 @@
                                                 <a href="{{ absolute_url(path('app_actualite_details', {'slug': actualite.slug})) }}" class="text-decoration-none color-terra" data-turbo="false">{{ actualite.titre }}</a>
                                             </h5>
                                             <div class="card-text mb-3">
-                                                    {{ actualite.contenu|slice(0,150)|raw }}
-                                                    {% if actualite.contenu|length > 150 %}
-                                                </div>
+                                                {{ actualite.contenu|slice(0,150)|raw }}
+                                                {% if actualite.contenu|length > 150 %}
+                                                    </div>
                                                 {% endif %}
                                             </div>
-
                                             <a href="{{ absolute_url(path('app_actualite_details', {'slug': actualite.slug})) }}" class="text-decoration-none color-terra" data-turbo="false"><small>Lire ma suite...</small></a>
                                         </div>
+
                                     </div>
                                 </div>
                             {% endfor %}
 
                         </div>
+
                     </div>
                 </section>
 
 
+
+                <div {{ stimulus_controller('partenaire-loader',{ url: path('app_partenaire_list')}) }} style="margin-top: 100px;">
+                    <div data-partenaire-loader-target="content">
+                        <div class="text-center mt-5 p-5">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Chargement des partenaires...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </main>
         {% endblock %}

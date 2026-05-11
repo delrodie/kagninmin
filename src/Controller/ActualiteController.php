@@ -16,10 +16,12 @@ class ActualiteController extends AbstractController
     {
     }
 
-    #[Route('/')]
+    #[Route('/', name: 'app_actualite_index')]
     public function index(): Response
     {
-        return $this->render('actualite/index.html.twig');
+        return $this->render('frontend/actualtes.html.twig',[
+            'actualites' => $this->actualiteRepository->findBy(['isAtif' => true], ['dateAction' => 'DESC']),
+        ]);
     }
 
     #[Route('/{slug}', name: 'app_actualite_details', methods: ['GET'])]

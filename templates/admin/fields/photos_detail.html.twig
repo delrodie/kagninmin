@@ -1,0 +1,55 @@
+{# templates/admin/fields/photos_detail.html.twig #}
+
+{% if field.value is empty %}
+    <p class="text-muted">Aucune photo pour cette actualité.</p>
+{% else %}
+    <div class="ea-gallery">
+        {% for photo in field.value %}
+            <div class="ea-gallery-item position-relative">
+                <a href="{{ asset('uploads/photos/' ~ photo.media) }}" target="_blank">
+                    <img src="{{ asset('uploads/photos/' ~ photo.media) }}"
+                         alt="{{ photo.legende|default('Photo') }}"
+                         class="img-fluid rounded">
+                </a>
+
+                {% if photo.legende %}
+                    <div class="ea-gallery-caption">
+                        {{ photo.legende }}
+                    </div>
+                {% endif %}
+
+                {# Icône de suppression #}
+                <form method="get"
+                      action="{{ path('app_admin_actualite_delete_photo', {id: photo.id}) }}"
+                      onsubmit="return confirm('Voulez-vous supprimer cette photo ?')"
+                      class="position-absolute top-0 end-0 m-2">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete_photo_' ~ photo.id) }}">
+                    <button type="submit" class="btn btn-danger btn-sm">
+                        <span class="px-2"><i class="fa-solid fa-trash"></i></span>
+                    </button>
+                </form>
+
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<style>
+    .ea-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1rem;
+    }
+    .ea-gallery-item img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .ea-gallery-item:hover img {
+        transform: scale(1.03);
+        transition: transform 0.3s;
+    }
+</style>
