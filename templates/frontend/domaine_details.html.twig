@@ -48,16 +48,26 @@
 
                                         <div class="card-body pb-5">
                                             <h5 class="card-title py-3">
-                                                <a href="{{ absolute_url(path('app_actualite_details', {'slug': actualite.slug})) }}" class="text-decoration-none color-terra" data-turbo="false">{{ actualite.titre }}</a>
+                                                <a href="{{ absolute_url(path('app_actualite_details', {'slug': actualite.slug})) }}"
+                                                   class="text-decoration-none color-terra"
+                                                   data-turbo-frame="main"
+                                                   data-turbo-action="advance"
+                                                >
+                                                    {{ actualite.titre }}
+                                                </a>
                                             </h5>
                                             <div class="card-text mb-3">
-                                                    {{ actualite.contenu|slice(0,150)|raw }}
-                                                    {% if actualite.contenu|length > 150 %}
-                                                </div>
-                                                {% endif %}
+                                                    {{ actualite.contenu|striptags|slice(0,150) }}
+
                                             </div>
 
-                                            <a href="{{ absolute_url(path('app_actualite_details', {'slug': actualite.slug})) }}" class="text-decoration-none color-terra" data-turbo="false"><small>Lire ma suite...</small></a>
+                                            <a href="{{ absolute_url(path('app_actualite_details', {'slug': actualite.slug})) }}"
+                                               class="text-decoration-none color-terra"
+                                               data-turbo-frame="main"
+                                               data-turbo-action="advance"
+                                            >
+                                                <small>Lire ma suite...</small>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -74,3 +84,36 @@
     </turbo-frame>
 {% endblock %}
 
+
+
+{% block head %}
+    {# === TITLE & DESCRIPTION === #}
+    <title>{{ domaine.titre|default("Domaines d'actions") }} - ONG KAGNINMIN</title>
+    <meta name="description" content="{{ domaine.contenu|striptags|slice(0, 160)|default('Découvrez nos actions') }}">
+
+    {# === Open Graph / Facebook === #}
+    <meta property="og:title" content="{{ domaine.titre|default("Domaines d'actions") }} - ONG KAGNINMIN">
+    <meta property="og:description" content="{{ domaine.contenu|striptags|slice(0, 160)|default('Découvrez nos domaines ') }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ absolute_url(path('app_domaine_details', {'slug': domaine.slug})) }}">
+
+    {# Image principale (très important) #}
+    {% if domaine.media %}
+        <meta property="og:image" content="{{ absolute_url(asset('uploads/domaines/' ~ domaine.media)) }}">
+    {% else %}
+        <meta property="og:image" content="{{ absolute_url(asset('images/autonomisation-circulaire.png')) }}">
+    {% endif %}
+
+    <meta property="og:site_name" content="ONG KAGNINMIN">
+    <meta property="og:locale" content="fr_FR">
+
+    {# === Twitter Cards === #}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ domaine.titre|default('Actualité') }} - ONG KAGNINMIN">
+    <meta name="twitter:description" content="{{ domaine.contenu|striptags|slice(0, 160)|default('Découvrez nos actions') }}">
+
+    {% if domaine.media %}
+        <meta name="twitter:image" content="{{ absolute_url(asset('uploads/domaines/' ~ domaine.media)) }}">
+    {% endif %}
+
+{% endblock %}

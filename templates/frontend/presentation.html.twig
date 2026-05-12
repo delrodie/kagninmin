@@ -130,3 +130,15 @@
         });
     </script>
 {% endblock %}
+
+
+{% block head %}
+    <title>Culture et Développement au service des populations - ONG KAGNINMIN</title>
+    <meta name="description" content="L'ONG KAGNINMIN est une organisation ivoirienne engagée dans la valorisation du riche patrimoine culturel et touristique de la Côte d'Ivoire.">
+
+    <meta property="og:title" content="Culture et Développement au service des populations - ONG KAGNINMIN">
+    <meta property="og:description" content="L'ONG KAGNINMIN est une organisation ivoirienne engagée dans la valorisation du riche patrimoine culturel et touristique de la Côte d'Ivoire.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ absolute_url(path('app_home')) }}">
+    <meta property="og:image" content="{{ absolute_url(asset('images/logo.jpg')) }}">
+{% endblock %}

@@ -49,7 +49,13 @@
 
                                     <div class="card-body pb-5">
                                         <h5 class="card-title">
-                                            <a href="{{ absolute_url(path('app_galerie_details', {'slug': actualite.slug})) }}" class="text-decoration-none color-terra" data-turbo="false">{{ actualite.titre }}</a>
+                                            <a href="{{ absolute_url(path('app_galerie_details', {'slug': actualite.slug})) }}"
+                                               class="text-decoration-none color-terra"
+                                               data-turbo-frame="main"
+                                               data-turbo-action="advance"
+                                            >
+                                                {{ actualite.titre }}
+                                            </a>
                                         </h5>
                                     </div>
                                 </div>
@@ -79,3 +85,14 @@
     </turbo-frame>
 {% endblock %}
 
+
+{% block head %}
+    <title>Nos actions en images - ONG KAGNINMIN</title>
+    <meta name="description" content="L'ONG KAGNINMIN est une organisation ivoirienne engagée dans la valorisation du riche patrimoine culturel et touristique de la Côte d'Ivoire.">
+
+    <meta property="og:title" content="Nos actions en images - ONG KAGNINMIN">
+    <meta property="og:description" content="L'ONG KAGNINMIN est une organisation ivoirienne engagée dans la valorisation du riche patrimoine culturel et touristique de la Côte d'Ivoire.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ absolute_url(path('app_home')) }}">
+    <meta property="og:image" content="{{ absolute_url(asset('images/logo.jpg')) }}">
+{% endblock %}

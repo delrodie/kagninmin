@@ -49,13 +49,17 @@
 
                                         <div class="card-body pb-5">
                                             <h5 class="card-title py-3">
-                                                <a href="{{ absolute_url(path('app_actualite_details', {'slug': actualite.slug})) }}" class="text-decoration-none color-terra" data-turbo="false">{{ actualite.titre }}</a>
+                                                <a href="{{ absolute_url(path('app_actualite_details', {'slug': actualite.slug})) }}"
+                                                   class="text-decoration-none color-terra"
+                                                   data-turbo-frame="main"
+                                                   data-turbo-action="advance"
+                                                >
+                                                    {{ actualite.titre }}
+                                                </a>
                                             </h5>
                                             <div class="card-text mb-3">
-                                                {{ actualite.contenu|slice(0,150)|raw }}
-                                                {% if actualite.contenu|length > 150 %}
-                                                    </div>
-                                                {% endif %}
+                                                {{ actualite.contenu|striptags|slice(0,150) }}
+
                                             </div>
                                             <a href="{{ absolute_url(path('app_actualite_details', {'slug': actualite.slug})) }}" class="text-decoration-none color-terra" data-turbo="false"><small>Lire ma suite...</small></a>
                                         </div>
@@ -86,3 +90,13 @@
     </turbo-frame>
 {% endblock %}
 
+{% block head %}
+    <title>Actualités - ONG KAGNINMIN</title>
+    <meta name="description" content="Découvrez toutes nos actions et actualités en faveur de l'épanouissement de la femme et de la jeune fille en Côte d'Ivoire.">
+
+    <meta property="og:title" content="Actualités - ONG KAGNINMIN">
+    <meta property="og:description" content="Découvrez toutes nos actions et actualités...">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ absolute_url(path('app_actualite_index')) }}">
+    <meta property="og:image" content="{{ absolute_url(asset('images/autonomisation-circulaire.png')) }}">
+{% endblock %}

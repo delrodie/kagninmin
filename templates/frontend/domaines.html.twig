@@ -49,7 +49,11 @@
                                                 {{ domaine.contenu|raw }}
                                             </div>
                                             {% if domaine.actualites|length > 0 %}
-                                                <a href="{{ absolute_url(path('app_domaine_details',{"slug" : domaine.slug})) }}" class="card-link mt-5 text-decoration-none">Nos actions <i
+                                                <a href="{{ absolute_url(path('app_domaine_details',{"slug" : domaine.slug})) }}"
+                                                   class="card-link mt-5 text-decoration-none"
+                                                   data-turbo-frame="main"
+                                                   data-turbo-action="advance"
+                                                >Nos actions <i
                                                         class="bi bi-arrow-right"></i></a>
                                             {% endif %}
 
@@ -79,3 +83,14 @@
     </turbo-frame>
 {% endblock %}
 
+
+{% block head %}
+    <title>Nos domaines d'actions - ONG KAGNINMIN</title>
+    <meta name="description" content="Découvrez toutes nos domaines d'actions et actualités en faveur de l'épanouissement de la femme et de la jeune fille en Côte d'Ivoire.">
+
+    <meta property="og:title" content="Domaines d'actions - ONG KAGNINMIN">
+    <meta property="og:description" content="Découvrez toutes nos domaines d'actions...">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ absolute_url(path('app_domaine_index')) }}">
+    <meta property="og:image" content="{{ absolute_url(asset('images/autonomisation-circulaire.png')) }}">
+{% endblock %}
