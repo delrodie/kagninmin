@@ -1,7 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nos actualités{% endblock %}
-
 {% block turbo_frame %}
     <turbo-frame id="main">
         {% block body %}
@@ -38,17 +36,19 @@
                             <h5 class="color-terra-dark">{{ actualite.titre }}</h5>
                         </div>
 
-                        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 my-3">
+                        <div data-controller="fancybox">
+                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 my-3">
 
-                            {% for photo in actualite.photos %}
-                                <div class="col">
-                                    <a href="{{ absolute_url(asset('uploads/photos/' ~ photo.media)) }}" data-fancybox="gallery" data-caption="{{ photo.legende }}"
-                                       class="ratio ratio-4x3">
-                                        <img src="{{ absolute_url(asset('uploads/photos/' ~ photo.media)) }}" alt="{{ photo.legende }}" class="object-fit-cover" loading="lazy" />
-                                    </a>
-                                </div>
-                            {% endfor %}
+                                {% for photo in actualite.photos %}
+                                    <div class="col">
+                                        <a href="{{ absolute_url(asset('uploads/photos/' ~ photo.media)) }}" data-fancybox="gallery" data-caption="{{ photo.legende }}"
+                                           class="ratio ratio-4x3">
+                                            <img src="{{ absolute_url(asset('uploads/photos/' ~ photo.media)) }}" alt="{{ photo.legende }}" class="object-fit-cover" loading="lazy" />
+                                        </a>
+                                    </div>
+                                {% endfor %}
 
+                            </div>
                         </div>
 
                     </div>
@@ -82,4 +82,41 @@
             // Your custom options
         });
     </script>
+{% endblock %}
+
+
+{% block head %}
+    {# === TITLE & DESCRIPTION === #}
+    <title>Galerie - {{ actualite.titre|default('Galerie') }} - ONG KAGNINMIN</title>
+    <meta name="description" content="{{ actualite.contenu|striptags|slice(0, 160)|default('Découvrez nos actions') }}">
+
+    {# === Open Graph / Facebook === #}
+    <meta property="og:title" content="{{ actualite.titre|default('Actualité') }} - ONG KAGNINMIN">
+    <meta property="og:description" content="{{ actualite.contenu|striptags|slice(0, 160)|default('Découvrez nos actions') }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ absolute_url(path('app_actualite_details', {'slug': actualite.slug})) }}">
+
+    {# Image principale (très important) #}
+    {% if actualite.media %}
+        <meta property="og:image" content="{{ absolute_url(asset('uploads/actualites/' ~ actualite.media)) }}">
+    {% else %}
+        <meta property="og:image" content="{{ absolute_url(asset('images/autonomisation-circulaire.png')) }}">
+    {% endif %}
+
+    <meta property="og:site_name" content="ONG KAGNINMIN">
+    <meta property="og:locale" content="fr_FR">
+
+    {# === Twitter Cards === #}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ actualite.titre|default('Actualité') }} - ONG KAGNINMIN">
+    <meta name="twitter:description" content="{{ actualite.contenu|striptags|slice(0, 160)|default('Découvrez nos actions') }}">
+
+    {% if actualite.media %}
+        <meta name="twitter:image" content="{{ absolute_url(asset('uploads/actualites/' ~ actualite.media)) }}">
+    {% endif %}
+
+    {# Optionnel : Auteur / Date #}
+    {% if actualite.publishedAt is defined %}
+        <meta property="article:published_time" content="{{ actualite.publishedAt|date('c') }}">
+    {% endif %}
 {% endblock %}
