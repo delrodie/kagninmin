@@ -52,28 +52,20 @@
                             culture, l'éducation et l'autonomisation
                         </p>
                     </div>
+
                     <div class="col-md-4 col-lg-3 mt-5 mt-lg-0 contact">
                         <h6 class="title fw-semibold">Nous contacter</h6>
-                        <ul class="list">
-                            <li class="mb-1">
-                                <a href="#" class="link"><i class="bi bi-geo-alt me-1"></i>
-                                    Abidjan, Côte d'Ivorie
-                                </a>
-                            </li>
-                            <li class="mb-1">
-                                <a href="#" class="link">
-                                    <i class="bi bi-envelope me-1"></i>
-                                    ongkagninmin@gmail.com
-                                </a>
-                            </li>
-                            <li class="d-flex flex-column">
-                                <a href="#" class="link"> <i class="bi bi-telephone"></i> +225 27 21 33 85 19</a>
-                                <a href="#" class="link"><i class="bi bi-phone"></i> +225 05 84 77 15 99</a>
-                                <a href="#" class="link"> <i class="bi bi-phone"></i> +225 05 65 66 77 03</a>
-                                <a href="#" class="link"> <i class="bi bi-phone"></i> +225 07 88 05 74 15</a>
-                            </li>
-                        </ul>
+                        <div {{ stimulus_controller('apropos-loader',{url: path('app_contact_footer')}) }}>
+                            <div data-apropos-loader-target="content">
+                                <div class="text-center p-5">
+                                    <div class="spinner-border text-warning">
+                                        <div class="visually-hidden">Chargement des coordonnées...</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                     <div class="col-md-4 col-lg-3 mt-5 mt-lg-0">
                         <h6 class="title fw-semibold">Nous suivre</h6>
                         <div class="mt-3 justify-content-center align-items-center">
@@ -95,16 +87,16 @@
                                             class="bi bi-house-fill"></i></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">QUI SOMMES-NOUS?</a>
+                                    <a class="nav-link" href="{{ absolute_url(path('app_presentation_index')) }}">QUI SOMMES-NOUS?</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">DOMAINES</a>
+                                    <a class="nav-link" href="{{ absolute_url(path('app_domaine_index')) }}">DOMAINES</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">PROGRAMMES</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">GALERIE</a>
+                                    <a class="nav-link" href="{{ absolute_url(path('app_galerie_index')) }}">GALERIE</a>
                                 </li>
                             </ul>
                         </div>

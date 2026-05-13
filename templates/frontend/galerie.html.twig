@@ -51,8 +51,7 @@
                                         <h5 class="card-title">
                                             <a href="{{ absolute_url(path('app_galerie_details', {'slug': actualite.slug})) }}"
                                                class="text-decoration-none color-terra"
-                                               data-turbo-frame="main"
-                                               data-turbo-action="advance"
+                                               data-turbo="false"
                                             >
                                                 {{ actualite.titre }}
                                             </a>

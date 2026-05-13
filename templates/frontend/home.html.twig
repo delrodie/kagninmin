@@ -47,96 +47,29 @@
                 <h4 class="section-title color-terra-dark mt-3 fs-2">Nos domaines d'interventions</h4>
 
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3">
-                    <div class="col animate__animated" data-animate="animate__slideInUp" data-duration="2.0s">
-                        <div class="card h-100 card-brown border-0">
-                            <div class="card-body p-5">
-                                <h5 class="card-title font-jakarta fw-bold">Culture & Arts</h5>
-                                <p class="card-text mt-3 text-justify">
-                                    Valorisation du patrimoine culturel ivoirien et africain. Promotion des expressions
-                                    artistiques locales comme vecteur
-                                    d'identité, de fierté et d'émancipation collective.
-                                </p>
-                                <a href="#" class="card-link mt-5 text-decoration-none">Découvrir <i
-                                        class="bi bi-arrow-right"></i></a>
+
+                    {% for domaine in domaines %}
+                        {% set duree = loop.index is even ? '2.0s' : '1.5s' %}
+                        <div class="col animate__animated " data-animate="animate__slideInUp" data-duration="{{ duree }}">
+                            <div class="card h-100 card-brown border-0">
+                                <div class="card-body p-5">
+                                    <h5 class="card-title font-jakarta fw-bold">{{ domaine.titre }}</h5>
+                                    <div class="card-text my-3 text-justify">
+                                        {{ domaine.contenu|raw }}
+                                    </div>
+                                    {% if domaine.actualites|length > 0 %}
+                                        <a href="{{ absolute_url(path('app_domaine_details',{"slug" : domaine.slug})) }}"
+                                           class="card-link mt-5 text-decoration-none"
+                                           data-turbo-frame="main"
+                                           data-turbo-action="advance"
+                                        >Nos actions <i
+                                                class="bi bi-arrow-right"></i></a>
+                                    {% endif %}
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col animate__animated" data-animate="animate__slideInUp" data-duration="1.5s">
-                        <div class="card h-100 card-brown border-0">
-                            <div class="card-body p-5">
-                                <h5 class="card-title font-jakarta fw-bold">Éducation de Qualité</h5>
-                                <p class="card-text mt-3 text-justify">
-                                    Accès à l'éducation formelle et informelle pour les femmes et jeunes filles. Lutte
-                                    contre les abandons scolaires, bourses, tutorat et centres d'apprentissage.
-
-                                </p>
-                                <a href="#" class="card-link mt-5 text-decoration-none">Découvrir <i
-                                        class="bi bi-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col animate__animated" data-animate="animate__slideInUp" data-duration="1.0s">
-                        <div class="card h-100 card-brown border-0">
-                            <div class="card-body p-5">
-                                <h5 class="card-title font-jakarta fw-bold text-start">Autonomisation des Femmes et de
-                                    jeune fille</h5>
-                                <p class="card-text mt-3 text-justify">
-                                    Formation professionnelle, entrepreneuriat féminin, leadership et plaidoyer pour les
-                                    droits des femmes. Parce qu'une
-                                    femme autonome change son foyer, sa communauté, son pays.
-
-                                </p>
-                                <a href="#" class="card-link mt-5 text-decoration-none">Découvrir <i
-                                        class="bi bi-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col animate__animated" data-animate="animate__slideInUp" data-duration="2.0s">
-                        <div class="card h-100 card-brown border-0">
-                            <div class="card-body p-5">
-                                <h5 class="card-title font-jakarta fw-bold">Protection de la Jeune Fille</h5>
-                                <p class="card-text mt-3 text-justify">
-                                    Prévention des mariages précoces, des mutilations génitales et des violences basées
-                                    sur le genre. Accompagnement
-                                    psychosocial et juridique des victimes.
-                                </p>
-                                <a href="#" class="card-link mt-5 text-decoration-none">Découvrir <i
-                                        class="bi bi-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col animate__animated" data-animate="animate__slideInUp" data-duration="1.5s">
-                        <div class="card h-100 card-brown border-0">
-                            <div class="card-body p-5">
-                                <h5 class="card-title font-jakarta fw-bold">Solidarité</h5>
-                                <p class="card-text mt-3 text-justify">
-                                    Nos réalisations en terme de dons, d'aide et soutien aux populations défavorisées.
-
-                                </p>
-                                <a href="#" class="card-link mt-5 text-decoration-none">Découvrir <i
-                                        class="bi bi-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col animate__animated" data-animate="animate__slideInUp" data-duration="1.0s">
-                        <div class="card h-100 card-brown border-0">
-                            <div class="card-body p-5">
-                                <h5 class="card-title font-jakarta fw-bold">Culture & Arts</h5>
-                                <p class="card-text mt-3 text-justify">
-                                    Valorisation du patrimoine culturel ivoirien et africain. Promotion des expressions
-                                    artistiques locales
-                                    comme vecteur
-                                    d'identité, de fierté et d'émancipation collective.
-                                </p>
-                                <a href="#" class="card-link mt-5 text-decoration-none">Découvrir <i
-                                        class="bi bi-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
 
                 </div>
             </div>
@@ -208,75 +141,38 @@
                 <h4 class="section-title color-terra-dark mt-3 fs-2">Actualités</h4>
 
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3">
-                    <div class="col animate__animated" data-animate="animate__slideInUp" data-duration="2.0s">
-                        <div class="card h-100 rounded-0 border-0 shadow">
-                            <figure class="overflow-hidden position-relative">
-                                <img src="./assets/images/actualites/actualite01.jpg" alt="" class="card-img-top">
-                                <figcaption
-                                    class="position-absolute text-end bottom-0 w-100 bg-text-black pe-1 py-2 actualite-figcaption">
-                                    <small class="fw-semibold px-3 py-2">01 avril 2026</small>
-                                </figcaption>
-                            </figure>
 
-                            <div class="card-body pb-5">
-                                <h5 class="card-title py-3">
-                                    <a href="#" class="text-decoration-none color-terra">Jeunesse, paix et forêts
-                                        sacrées à Biankouma (2021)</a>
-                                </h5>
-                                <p class="card-text">
-                                    Dans le cadre d'un projet financé par le Fonds de Consolidation de la Paix des
-                                    Nations Unies et mené en partenariat avec L'UNESCO
-                                </p>
+                    {% for actualite in actualites %}
+                        <div class="col animate__animated" data-animate="animate__slideInUp" data-duration="2.0s">
+                            <div class="card h-100 rounded-0 border-0 shadow">
+                                <figure class="overflow-hidden position-relative">
+                                    <img src="{{ absolute_url(asset('uploads/actualites/' ~ actualite.media)) }}" alt="{{ actualite.titre }}" class="card-img-top" loading="lazy">
+                                    <figcaption
+                                        class="position-absolute text-end bottom-0 w-100 bg-text-black pe-1 py-2 actualite-figcaption">
+                                        <small class="fw-semibold px-3 py-2">{{ actualite.publishedAt|format_datetime(locale='fr', pattern='d MMM yyyy') }}</small>
+                                    </figcaption>
+                                </figure>
+
+                                <div class="card-body pb-5">
+                                    <h5 class="card-title py-3">
+                                        <a href="{{ absolute_url(path('app_actualite_details', {'slug': actualite.slug})) }}"
+                                           class="text-decoration-none color-terra"
+                                           data-turbo-frame="main"
+                                           data-turbo-action="advance"
+                                        >
+                                            {{ actualite.titre }}
+                                        </a>
+                                    </h5>
+                                    <div class="card-text mb-3">
+                                        {{ actualite.contenu|striptags|slice(0,150) }}
+
+                                    </div>
+                                    <a href="{{ absolute_url(path('app_actualite_details', {'slug': actualite.slug})) }}" class="text-decoration-none color-terra" data-turbo="false"><small>Lire ma suite...</small></a>
+                                </div>
+
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col animate__animated" data-animate="animate__slideInUp" data-duration="1.5s">
-                        <div class="card h-100 rounded-0 border-0 shadow">
-                            <figure class="overflow-hidden position-relative">
-                                <img src="./assets/images/actualites/actualite02.jpg" alt="" class="card-img-top">
-                                <figcaption
-                                    class="position-absolute text-end bottom-0 w-100 bg-text-black pe-1 py-2 actualite-figcaption">
-                                    <small class="fw-semibold px-3 py-2">01 avril 2026</small>
-                                </figcaption>
-                            </figure>
-
-                            <div class="card-body pb-5">
-                                <h5 class="card-title py-3">
-                                    <a href="#" class="text-decoration-none color-terra">Partenariat culturel: l'ONG
-                                        KAGNINMIN au Centre Technique des Arts Appliqués de Bingerville</a>
-                                </h5>
-                                <p class="card-text">
-                                    Le mercredi 2 septembre 2020, Madame BOMBO Tatiana, Présidente fondatrice de l'ONG
-                                    KAGNINMIN - Culture et Développement...
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col animate__animated" data-animate="animate__slideInUp" data-duration="1.0s">
-                        <div class="card h-100 rounded-0 border-0 shadow">
-                            <figure class="overflow-hidden position-relative">
-                                <img src="./assets/images/actualites/actualite03.jpg" alt="" class="card-img-top">
-                                <figcaption
-                                    class="position-absolute text-end bottom-0 w-100 bg-text-black pe-1 py-2 actualite-figcaption">
-                                    <small class="fw-semibold px-3 py-2">01 avril 2026</small>
-                                </figcaption>
-                            </figure>
-
-                            <div class="card-body pb-5">
-                                <h5 class="card-title py-3">
-                                    <a href="#" class="text-decoration-none color-terra">Valorisation du patrimoine
-                                        culinaire ivoirien - Rencontre avec l'UVICOCI (2020)</a>
-                                </h5>
-                                <p class="card-text">
-                                    Le 13 octobre 2020, l'ONG KAGNINMIN a présenté son projet de valorisation du
-                                    patrimoine culinaire ivoirien au siège de l'Union des Villes...
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
+                    {% endfor %}
 
                 </div>
             </div>

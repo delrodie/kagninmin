@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Repository\ActualiteRepository;
+use App\Repository\DomaineRepository;
 use App\Repository\MaintenanceRepository;
 use App\Repository\SlideRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,7 +16,9 @@ class DefaultController extends AbstractController
 {
     public function __construct(
         private MaintenanceRepository $maintenanceRepository,
-        private SlideRepository $slideRepository
+        private SlideRepository $slideRepository,
+        private ActualiteRepository $actualiteRepository,
+        private DomaineRepository $domaineRepository,
     )
     {
     }
@@ -27,6 +31,8 @@ class DefaultController extends AbstractController
         }
         return $this->render('frontend/home.html.twig',[
             'slides' => $this->slideRepository->findBy(['isValid' => true],['id' => "DESC"]),
+            'actualites' => $this->actualiteRepository->findBy(['isAtif' => true], ['dateAction' => 'DESC']),
+            'domaines' => $this->domaineRepository->findBy(['isActif' => true])
         ]);
     }
 

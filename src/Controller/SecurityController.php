@@ -22,7 +22,7 @@ class SecurityController extends AbstractController
             'last_username' => $lastUsername,
             'error' => $error,
             'favicon_path' => './assets/images/logo_bleu.png',
-            'page_title' => "ScoutReady App",
+            'page_title' => "ONG KAGNINMIN",
             'target_path' => $this->generateUrl('app_admin'),
             '_username_label' => "Votre nom d'utilisateur",
             '_password_label' => "Votre mot de passe",
