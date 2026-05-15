@@ -4,6 +4,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 {#        <title>{% block title %}ONG KAGNINMIN — Culture · Éducation · Autonomisation{% endblock %}</title>#}
+        {{ pwa(
+            injectThemeColor: true,
+            injectFavicons: true,
+            injectSw: true,
+            injectResourceHints: true
+        ) }}
         {% block head %}{% endblock %}
 
         <link rel="icon" href="{{ absolute_url(asset('images/facion_logo.png')) }}">

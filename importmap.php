@@ -28,4 +28,13 @@ return [
     '@fancyapps/ui' => [
         'version' => '6.1.14',
     ],
+    'idb' => [
+        'version' => '8.0.3',
+    ],
+    'idb-keyval' => [
+        'version' => '6.2.2',
+    ],
+    '@spomky-labs/pwa/helpers' => [
+        'path' => './vendor/spomky-labs/pwa-bundle/assets/src/helpers.js',
+    ],
 ];

@@ -1,0 +1,136 @@
+# Documentation available at https://pwa.spomky-labs.com/
+## Please add the favicons, manifest or serviceworker sections depending on your needs.
+pwa:
+    asset_compiler: false # Default to true. Will change to false in 2.0.0.
+    image_processor: 'pwa.image_processor.gd' # Or 'pwa.image_processor.imagick'
+    manifest:
+        enabled: true
+        name: "ONG KAGNINMIN"
+        short_name: "Portail"
+        description: "L'ONG KAGNINMIN — Culture et Développement au service des populations"
+        start_url: "app_home"                    # nom de route Symfony
+        scope: "/"
+        display: "standalone"
+        orientation: "any"
+        background_color: "#F3E6DC"
+        theme_color: "#000000"
+        lang: "fr"                               # langue par défaut
+        dir: "ltr"
+
+        # Icônes (déclarez-les, le bundle les génère avec pwa:compile)
+#        icons:
+#            - src: "images/facion_logo.png"
+#              sizes: [192]
+#              purpose: "maskable"
+##
+##            - src: "icons/icon-512.png"
+##              sizes: [512]
+##              purpose: "any maskable"
+
+        icons:
+            -   src: icons/icon-16x16.png
+                sizes:
+                    - 16
+                type: image/png
+            -   src: icons/icon-32x32.png
+                sizes:
+                    - 32
+                type: image/png
+            -   src: icons/icon-48x48.png
+                sizes:
+                    - 48
+                type: image/png
+            -   src: icons/icon-96x96.png
+                sizes:
+                    - 96
+                type: image/png
+            -   src: icons/icon-144x144.png
+                sizes:
+                    - 144
+                type: image/png
+            -   src: icons/icon-180x180.png
+                sizes:
+                    - 180
+                type: image/png
+            -   src: icons/icon-256x256.png
+                sizes:
+                    - 256
+                type: image/png
+            -   src: icons/icon-512x512.png
+                sizes:
+                    - 512
+                type: image/png
+            -   src: icons/icon-1024x1024.png
+                sizes:
+                    - 1024
+                type: image/png
+
+        # Screenshots (optionnel, pour les stores)
+        # screenshots:
+        #     - src: "screenshots/desktop.png"
+        #       sizes: "1280x720"
+        #       type: "image/png"
+        #       form_factor: "wide"
+
+    favicons:
+        src: "icons/icon-96x96.png"
+
+    serviceworker:
+        enabled: true
+        src: "sw.js"                    # fichier dans assets/
+        dest: "/sw.js"                  # URL publique
+        scope: "/"
+        skip_waiting: true
+
+        workbox:
+            # Cache des assets statiques (Asset Mapper)
+            asset_cache:
+                enabled: true
+                regex: '/\.(css|js|woff2?|json)$/'
+#                cache_name: 'assets'
+#                strategy: 'CacheFirst'
+#                max_entries: 150
+#                max_age: 31536000   # 1 an
+
+            # Images
+            image_cache:
+                enabled: true
+                regex: '/\.(png|jpg|jpeg|gif|svg|webp|avif)$/'
+#                cache_name: 'images'
+#                strategy: 'CacheFirst'
+                max_entries: 80
+                max_age: 2592000    # 30 jours
+
+            # Fonts
+            font_cache:
+                enabled: true
+                regex: '/\.(woff|woff2|ttf|otf)$/'
+#                cache_name: 'fonts'
+#                strategy: 'CacheFirst'
+                max_entries: 30
+                max_age: 31536000
+
+            # Pages / Navigation (offline-friendly)
+            resource_caches:
+                - match_callback: 'navigate'           # toutes les navigations
+                  cache_name: 'pages'
+                  strategy: 'StaleWhileRevalidate'     # Très bon compromis
+                  max_entries: 60
+                  max_age: 86400                       # 1 jour
+
+                - match_callback: 'regex: /\/api\//'
+                  cache_name: 'api'
+                  strategy: 'NetworkFirst'
+                  network_timeout: 5
+                  max_entries: 100
+                  max_age: 3600
+
+            # Fallback offline
+            offline_fallback:
+                page: '/offline'           # Créez une route/page offline.html.twig
+#                image: '/images/offline.png'
+#                font: null
+
+            # Autres options utiles
+            navigation_preload: true
+            clear_cache: true          # Nettoie les anciens caches à l'installation
