@@ -74,7 +74,14 @@
 
                             {% if actualite.photos|length > 0 %}
                                 <div class="mt-5 text-end">
-                                    <a href="#" class="text-end text-decoration-none color-terra fst-italic">Voir les photos...</a>
+                                    <a href="{{ path('app_galerie_details', {'slug': actualite.slug}) }}"
+                                       class="text-end text-decoration-none color-terra fst-italic"
+                                       data-turbo-action="advance"
+                                       data-turbo-frame="main"
+                                       data-turbo="false"
+                                    >
+                                        Voir les photos...
+                                    </a>
                                 </div>
                             {% endif %}
 

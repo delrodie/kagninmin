@@ -143,7 +143,8 @@
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3">
 
                     {% for actualite in actualites|slice(0,3) %}
-                        <div class="col animate__animated" data-animate="animate__slideInDown" data-duration="2.0s">
+{#                        <div class="col animate__animated" data-animate="animate__slideInDown" data-duration="2.0s">#}
+                        <div class="col animate__animated">
                             <div class="card h-100 rounded-0 border-0 shadow">
                                 <figure class="overflow-hidden position-relative">
                                     <img src="{{ absolute_url(asset('uploads/actualites/' ~ actualite.media)) }}" alt="{{ actualite.titre }}" class="card-img-top" loading="lazy">
