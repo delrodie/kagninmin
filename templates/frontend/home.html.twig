@@ -54,7 +54,7 @@
                             <div class="card h-100 card-brown border-0">
                                 <div class="card-body p-5">
                                     <h5 class="card-title font-jakarta fw-bold">{{ domaine.titre }}</h5>
-                                    <div class="card-text my-3 text-justify">
+                                    <div class="card-text my-3 text-start">
                                         {{ domaine.contenu|raw }}
                                     </div>
                                     {% if domaine.actualites|length > 0 %}
@@ -142,14 +142,14 @@
 
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3">
 
-                    {% for actualite in actualites %}
-                        <div class="col animate__animated" data-animate="animate__slideInUp" data-duration="2.0s">
+                    {% for actualite in actualites|slice(0,3) %}
+                        <div class="col animate__animated" data-animate="animate__slideInDown" data-duration="2.0s">
                             <div class="card h-100 rounded-0 border-0 shadow">
                                 <figure class="overflow-hidden position-relative">
                                     <img src="{{ absolute_url(asset('uploads/actualites/' ~ actualite.media)) }}" alt="{{ actualite.titre }}" class="card-img-top" loading="lazy">
                                     <figcaption
                                         class="position-absolute text-end bottom-0 w-100 bg-text-black pe-1 py-2 actualite-figcaption">
-                                        <small class="fw-semibold px-3 py-2">{{ actualite.publishedAt|format_datetime(locale='fr', pattern='d MMM yyyy') }}</small>
+                                        <small class="fw-semibold px-3 py-2">{{ actualite.dateAction|format_datetime(locale='fr', pattern='d MMM yyyy') }}</small>
                                     </figcaption>
                                 </figure>
 
@@ -167,7 +167,7 @@
                                         {{ actualite.contenu|striptags|slice(0,150) }}
 
                                     </div>
-                                    <a href="{{ absolute_url(path('app_actualite_details', {'slug': actualite.slug})) }}" class="text-decoration-none color-terra" data-turbo="false"><small>Lire ma suite...</small></a>
+                                    <a href="{{ absolute_url(path('app_actualite_details', {'slug': actualite.slug})) }}" class="text-decoration-none color-terra" data-turbo="false"><small>Lire la suite...</small></a>
                                 </div>
 
                             </div>
