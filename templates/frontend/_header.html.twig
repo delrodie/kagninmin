@@ -3,7 +3,7 @@
 <div id="install-container" style="display: none">
     <button class="btn-install-pwa"
             {{ stimulus_controller('@pwa/install') }}
-        {{ stimulus_controller('@pwa/install', 'install') }}
+        {{ stimulus_action('@pwa/install', 'install') }}
     >
         Installer l'application
     </button>
