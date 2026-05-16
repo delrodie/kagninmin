@@ -40,8 +40,9 @@ class ContactController extends AbstractController
 
             try {
                 $this->contactMailer->notifAdmins($message);
+                sweetalert()->success("Votre message a été enregistré et envoyé avec succès aux administrateurs!");
             }catch (\Exception $e){
-                $this->addFlash("Message");
+                sweetalert()->warning("Votre message a été enregistré avec succès. Cependant le mail n'a pu être envoyé aux administrateurs");
             }
 
             return $this->redirectToRoute('app_contact_index');

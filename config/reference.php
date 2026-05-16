@@ -1871,6 +1871,36 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     web_client?: scalar|Param|null, // The Panther Client for generating screenshots. If not set, the default client will be used. // Default: null
  *     user_agent?: scalar|Param|null, // The user agent to use when generating screenshots. When this user agent is detected, the Symfony profiler and debug toolbar will be automatically disabled to ensure screenshots look like production. // Default: "PWAScreenshotBot"
  * }
+ * @psalm-type FlasherConfig = array{
+ *     default?: scalar|Param|null, // Default notification library (e.g., "flasher", "toastr", "noty", "notyf", "sweetalert") // Default: "flasher"
+ *     main_script?: scalar|Param|null, // Path to the main PHPFlasher JavaScript file // Default: "/vendor/flasher/flasher.min.js"
+ *     public_path?: scalar|Param|null, // Prefix prepended to every flasher asset URL. Useful when the app is served from a subdirectory (e.g. "/Symfony") or a separate asset host (e.g. "https://cdn.example.com"). Defaults to "". // Default: ""
+ *     inject_assets?: bool|Param, // Automatically inject assets into HTML pages // Default: true
+ *     translate?: bool|Param, // Enable message translation // Default: true
+ *     excluded_paths?: list<scalar|Param|null>,
+ *     filter?: list<mixed>,
+ *     scripts?: list<scalar|Param|null>,
+ *     styles?: list<scalar|Param|null>,
+ *     options?: list<mixed>,
+ *     flash_bag?: mixed, // Map Symfony flash messages to notification types // Default: true
+ *     presets?: array<string, array{ // Default: []
+ *         type?: scalar|Param|null, // Notification type (e.g., "success", "error")
+ *         title?: scalar|Param|null, // Default title
+ *         message?: scalar|Param|null, // Default message
+ *         options?: list<mixed>,
+ *     }>,
+ *     plugins?: array<string, array{ // Default: []
+ *         view?: scalar|Param|null, // Custom twig view template
+ *         styles?: list<scalar|Param|null>,
+ *         scripts?: list<scalar|Param|null>,
+ *         options?: list<mixed>,
+ *     }>,
+ *     themes?: array<string, array{ // Default: []
+ *         styles?: list<scalar|Param|null>,
+ *         scripts?: list<scalar|Param|null>,
+ *         options?: list<mixed>,
+ *     }>,
+ * }
  * @psalm-type ConfigType = array{
  *     imports?: ImportsConfig,
  *     parameters?: ParametersConfig,
@@ -1886,6 +1916,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     monolog?: MonologConfig,
  *     twig_component?: TwigComponentConfig,
  *     pwa?: PwaConfig,
+ *     flasher?: FlasherConfig,
  *     "when@dev"?: array{
  *         imports?: ImportsConfig,
  *         parameters?: ParametersConfig,
@@ -1904,6 +1935,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         maker?: MakerConfig,
  *         twig_component?: TwigComponentConfig,
  *         pwa?: PwaConfig,
+ *         flasher?: FlasherConfig,
  *     },
  *     "when@prod"?: array{
  *         imports?: ImportsConfig,
@@ -1920,6 +1952,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         monolog?: MonologConfig,
  *         twig_component?: TwigComponentConfig,
  *         pwa?: PwaConfig,
+ *         flasher?: FlasherConfig,
  *     },
  *     "when@test"?: array{
  *         imports?: ImportsConfig,
@@ -1937,6 +1970,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         monolog?: MonologConfig,
  *         twig_component?: TwigComponentConfig,
  *         pwa?: PwaConfig,
+ *         flasher?: FlasherConfig,
  *     },
  *     ...<string, ExtensionType|array{ // extra keys must follow the when@%env% pattern or match an extension alias
  *         imports?: ImportsConfig,
