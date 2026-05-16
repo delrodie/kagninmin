@@ -6,7 +6,7 @@ pwa:
     manifest:
         enabled: true
         name: "ONG KAGNINMIN"
-        short_name: "Portail"
+        short_name: "ONG KAGNINMIN"
         description: "L'ONG KAGNINMIN — Culture et Développement au service des populations"
         start_url: "app_home"                    # nom de route Symfony
         scope: "/"

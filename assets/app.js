@@ -44,8 +44,24 @@ function handleScroll() {
     }
 }
 
+function pwaInstall() {
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        document.getElementById('install-container').style.display = 'block';
+    });
+
+    window.addEventListener('appinstalled', () => {
+        document.getElementById('install-container').style.display = 'none';
+    })
+}
+
 // Déclenché à chaque navigation Turbo ET au premier chargement
 document.addEventListener("turbo:load", () => {
     initNavbar();
     initAnimations();
+    pwaInstall();
 });
+
+
