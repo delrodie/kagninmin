@@ -62,6 +62,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section();
         yield MenuItem::section('Contact');
         yield MenuItem::linkTo(CoordonneeCrudController::class, 'Coordonnées', 'fa-solid fa-envelopes-bulk');
+        yield MenuItem::linkTo(CorrespondanceCrudController::class, 'Emails', 'fa-solid fa-at');
         yield MenuItem::linkTo(ObjetCrudController::class, 'Objets', 'fa-regular fa-note-sticky');
         yield MenuItem::linkTo(MessageCrudController::class, 'Messages', 'fa-regular fa-envelope');
 

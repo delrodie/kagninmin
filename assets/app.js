@@ -46,15 +46,27 @@ function handleScroll() {
 
 function pwaInstall() {
     let deferredPrompt;
+
+    // Masquer le bouton d'installation par défaut
+    const installContainer = document.getElementById('install-container');
+    if (installContainer) {
+        installContainer.style.display = 'none';
+    }
+
     window.addEventListener('beforeinstallprompt', (e) => {
         e.preventDefault();
         deferredPrompt = e;
-        document.getElementById('install-container').style.display = 'block';
+        if (installContainer) {
+            installContainer.style.display = 'block';
+        }
     });
 
     window.addEventListener('appinstalled', () => {
-        document.getElementById('install-container').style.display = 'none';
-    })
+        if (installContainer) {
+            installContainer.style.display = 'none';
+        }
+        deferredPrompt = null;
+    });
 }
 
 // Déclenché à chaque navigation Turbo ET au premier chargement
