@@ -37,4 +37,7 @@ return [
     '@spomky-labs/pwa/helpers' => [
         'path' => './vendor/spomky-labs/pwa-bundle/assets/src/helpers.js',
     ],
+    'chart.js' => [
+        'version' => '3.9.1',
+    ],
 ];

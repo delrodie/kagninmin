@@ -3,5 +3,176 @@
 {% block content_title 'Tableau de bord ' %}
 
 {% block main %}
-    Test
+
+        <!-- Filtres de dates -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="GET" class="row g-3 align-items-end">
+                            <div class="col-md-3">
+                                <label class="form-label">Date de début</label>
+                                <input type="date" name="start" value="{{ startDate }}" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Date de fin</label>
+                                <input type="date" name="end" value="{{ endDate }}" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-primary w-100">
+                                    <i class="fas fa-filter"></i> Appliquer
+                                </button>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="{{ path('app_admin') }}" class="btn btn-secondary w-100">
+                                    Réinitialiser
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Statistiques -->
+            <div class="col-md-3">
+                <div class="card h-100 border-primary">
+                    <div class="card-body text-center">
+                        <h5 class="text-muted">Aujourd'hui</h5>
+                        <h2 class="text-primary">{{ todayVisits|default(0) }}</h2>
+                        <small class="text-muted">({{ todayUnique|default(0) }} uniques)</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100 border-success">
+                    <div class="card-body text-center">
+                        <h5 class="text-muted">Cette semaine</h5>
+                        <h2 class="text-success">{{ weekVisits|default(0) }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="text-muted">Période</h5>
+                        <h2>{{ periodVisits|default(0) }}</h2>
+                        <small class="text-muted">({{ periodUnique|default(0) }} uniques)</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="text-muted">Total Visites</h5>
+                        <h2>{{ totalVisits|default(0) }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Graphique -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">Évolution des visites</div>
+                    <div class="card-body">
+                        {{ render_chart(visitsChart) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <!-- Top Pages -->
+            <div class="col-lg-6">
+                <div class="card h-100">
+                    <div class="card-header">Pages les plus visitées</div>
+                    <div class="card-body p-0">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                            <tr>
+                                <th>Page</th>
+                                <th class="text-end">Visites</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for page in topPages %}
+                                <tr>
+                                    <td><code>{{ page.path }}</code></td>
+                                    <td class="text-end fw-bold">{{ page.visits }}</td>
+                                </tr>
+                            {% else %}
+                                <tr><td colspan="2" class="text-center text-muted">Aucune donnée</td></tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sources de trafic -->
+            <div class="col-lg-6">
+                <div class="card h-100">
+                    <div class="card-header">Sources de trafic</div>
+                    <div class="card-body p-0">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                            <tr>
+                                <th>Source</th>
+                                <th class="text-end">Visites</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for source in sources %}
+                                <tr>
+                                    <td>
+                                        {% if source.referrer %}
+                                            {{ source.referrer|slice(0, 55) }}{% if source.referrer|length > 55 %}...{% endif %}
+                                        {% else %}
+                                            <em>Accès direct</em>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-end fw-bold">{{ source.visits }}</td>
+                                </tr>
+                            {% else %}
+                                <tr><td colspan="2" class="text-center text-muted">Aucune donnée</td></tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pays -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">Visites par pays</div>
+                    <div class="card-body">
+                        <div class="row">
+                            {% for country in countries %}
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                            <span class="me-3 fs-4">
+                                {{ country.countryName == "Côte d'Ivoire" ? "🇨🇮" :
+                                country.countryName == "France" ? "🇫🇷" : "🌍" }}
+                            </span>
+                                        <div>
+                                            <strong>{{ country.countryName|default('Inconnu') }}</strong><br>
+                                            <small class="text-muted">{{ country.visits }} visites</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <p class="text-muted text-center">Aucune donnée de géolocalisation disponible pour le moment.</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 {% endblock %}

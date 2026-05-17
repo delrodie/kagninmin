@@ -25,3 +25,14 @@ services:
     App\Services\ContactMailer:
         arguments:
             $superAdminEmail: '%env(SUPER_ADMIN_EMAIL)%'
+
+    App\EventListener\PageViewListener:
+        arguments:
+            $geoDbPath: '%kernel.project_dir%/config/geo/GeoLite2-Country.mmdb'
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, priority: -10}
+
+    App\Controller\Admin\DashboardController:
+        arguments:
+            $pageViewRepo: '@App\Repository\PageViewRepository'
+            $chartBuilder: '@chartjs.builder'
