@@ -34,6 +34,15 @@ class Coordonnee
     #[ORM\Column(length: 32, nullable: true)]
     private ?string $phone3 = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $facebook = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $instagram = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $whatsapp = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -119,6 +128,42 @@ class Coordonnee
     public function setPhone3(?string $phone3): static
     {
         $this->phone3 = $phone3;
+
+        return $this;
+    }
+
+    public function getFacebook(): ?string
+    {
+        return $this->facebook;
+    }
+
+    public function setFacebook(?string $facebook): static
+    {
+        $this->facebook = $facebook;
+
+        return $this;
+    }
+
+    public function getInstagram(): ?string
+    {
+        return $this->instagram;
+    }
+
+    public function setInstagram(?string $instagram): static
+    {
+        $this->instagram = $instagram;
+
+        return $this;
+    }
+
+    public function getWhatsapp(): ?string
+    {
+        return $this->whatsapp;
+    }
+
+    public function setWhatsapp(?string $whatsapp): static
+    {
+        $this->whatsapp = $whatsapp;
 
         return $this;
     }

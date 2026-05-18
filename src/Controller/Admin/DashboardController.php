@@ -94,7 +94,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section();
         yield MenuItem::linkTo(SlideCrudController::class, 'Sliders', 'fa-solid fa-images');
         yield MenuItem::linkTo(PartenaireCrudController::class, 'Partenaires', 'fa-solid fa-handshake');
-        // <i class="fa-solid fa-person-digging"></i>
+        // <i class="fa-solid fa-person-digging"></i> <i class="fa-solid fa-person-through-window"></i>
 
         yield MenuItem::section();
         yield MenuItem::section('Qui sommes-nous?');
@@ -103,6 +103,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkTo(MissionCrudController::class, 'Notre mission', 'fa-solid fa-rocket');
         yield MenuItem::linkTo(VisionCrudController::class, 'Notre vision', 'fa-solid fa-arrows-to-eye');
         yield MenuItem::linkTo(ValeurCrudController::class, 'Nos valeurs', 'fa-solid fa-chess-knight');
+        yield MenuItem::linkTo(FooterAproposCrudController::class, 'Footer', 'fa-solid fa-person-through-window');
 
         yield MenuItem::section();
         yield MenuItem::section('Gestion');

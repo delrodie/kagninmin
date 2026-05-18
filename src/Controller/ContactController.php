@@ -56,6 +56,12 @@ class ContactController extends AbstractController
         ]);
     }
 
+    #[Route('/{slug}', name: '')]
+    public function widget($slug)
+    {
+
+    }
+
     #[Route('/footer', name: 'app_contact_footer')]
     public function footer()
     {

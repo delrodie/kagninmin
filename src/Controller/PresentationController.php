@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Entity\AccueilApropos;
 use App\Repository\AccueilAproposRepository;
 use App\Repository\AproposRepository;
+use App\Repository\FooterAproposRepository;
 use App\Repository\MissionRepository;
 use App\Repository\ValeurRepository;
 use App\Repository\VisionRepository;
@@ -18,11 +19,11 @@ use Symfony\Component\Routing\Attribute\Route;
 class PresentationController extends AbstractController
 {
     public function __construct(
-        private AproposRepository $aproposRepository,
-        private MissionRepository $missionRepository,
-        private VisionRepository $visionRepository,
-        private ValeurRepository $valeurRepository,
-        private AccueilAproposRepository $accueilAproposRepository,
+        private AproposRepository        $aproposRepository,
+        private MissionRepository        $missionRepository,
+        private VisionRepository         $visionRepository,
+        private ValeurRepository         $valeurRepository,
+        private AccueilAproposRepository $accueilAproposRepository, private readonly FooterAproposRepository $footerAproposRepository,
     )
     {
     }
@@ -42,6 +43,7 @@ class PresentationController extends AbstractController
             'vision' => $this->vision(),
             'valeur' => $this->valeur(),
             'illustration' => $this->illustration(),
+            'footer' => $this->footer(),
             default => $this->accueil_presentation($slug),
         };
     }
@@ -90,6 +92,13 @@ class PresentationController extends AbstractController
     {
         return $this->render('frontend/illustration.html.twig',[
             'illustration' => $this->accueilAproposRepository->findOneBy(['isActif' => true], ['id' => "DESC"]),
+        ]);
+    }
+
+    private function footer()
+    {
+        return $this->render('frontend/_footer_apropos.html.twig',[
+            'presentation' => $this->footerAproposRepository->findOneBy([],['id' => "DESC"])
         ]);
     }
 }

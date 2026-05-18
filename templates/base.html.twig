@@ -3,19 +3,19 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-{#        <title>{% block title %}ONG KAGNINMIN — Culture · Éducation · Autonomisation{% endblock %}</title>#}
+
+        {% block head %}{% endblock %}
+
+        <link rel="icon" href="{{ absolute_url(asset('images/facion_logo.png')) }}">
+        {% block stylesheets %}{% endblock %}
+
         {{ pwa(
             injectThemeColor: true,
             injectFavicons: true,
             injectSw: true,
             injectResourceHints: true
         ) }}
-        {% block head %}{% endblock %}
 
-        <link rel="icon" href="{{ absolute_url(asset('images/facion_logo.png')) }}">
-
-        {% block stylesheets %}
-        {% endblock %}
 
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
@@ -38,50 +38,16 @@
 
         <footer>
             <div class="container">
-                <div class="row">
-                    <div class="col-md-12 col-lg-3">
-                        <div class="row justify-content-center align-items-center g-2">
-                            <div class="col-12 col-md-4 col-lg-12">
-                                <img src="{{ absolute_url(asset('images/logo.jpg')) }}" alt="" class="img-fluid logo">
-                            </div>
-                            <div class="col-12 col-md-8 col-lg-12 ms-auto">
-                                <div class="devise color-terra-light text-uppercase fw-semibold">
-                                    Culture - éducation - Autonomisation
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-lg-3 mt-5 mt-lg-0 apropos">
-                        <h6 class="title fw-semibold">A propos</h6>
-                        <p>
-                            ONG ivoirienne engagée pour l'épanouissement de la femme et de la jeune fille à travers la
-                            culture, l'éducation et l'autonomisation
-                        </p>
-                    </div>
 
-                    <div class="col-md-4 col-lg-3 mt-5 mt-lg-0 contact">
-                        <h6 class="title fw-semibold">Nous contacter</h6>
-                        <div {{ stimulus_controller('apropos-loader',{url: path('app_contact_footer')}) }}>
-                            <div data-apropos-loader-target="content">
-                                <div class="text-center p-5">
-                                    <div class="spinner-border text-warning">
-                                        <div class="visually-hidden">Chargement des coordonnées...</div>
-                                    </div>
-                                </div>
+                <div {{ stimulus_controller('apropos-loader',{url: path('app_footer')}) }}>
+                    <div data-apropos-loader-target="content">
+                        <div class="text-center p-5">
+                            <div class="spinner-border text-warning">
+                                <div class="visually-hidden">Chargement du footer...</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-lg-3 mt-5 mt-lg-0">
-                        <h6 class="title fw-semibold">Nous suivre</h6>
-                        <div class="mt-3 justify-content-center align-items-center">
-                            <a href="#" class="icon link fs-2"><i class="bi bi-facebook"></i></a>
-                            <a href="#" class="icon link fs-2"><i class="bi bi-instagram"></i></a>
-                            <a href="#" class="icon link fs-2"><i class="bi bi-whatsapp"></i></a>
-                        </div>
-                    </div>
-
-                </div>
             </div>
             <div class="barreMenu">
                 <div class="container">

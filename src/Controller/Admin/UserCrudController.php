@@ -56,7 +56,7 @@ class UserCrudController extends AbstractCrudController
 
             // Affichage
             IntegerField::new('totalConnexion')->hideOnForm(),
-            DateTimeField::new('lastConnectedAt')->hideOnForm()->setFormat(date('Y-m-d H:i:s')),
+            DateTimeField::new('lastConnectedAt')->hideOnForm(),//->setFormat(date('Y-m-d H:i:s')),
         ];
     }
 
