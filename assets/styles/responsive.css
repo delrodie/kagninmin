@@ -117,7 +117,7 @@
 
 @media (min-width: 1200px) {
     .slider .carousel-caption {
-        top: 60%;
+        top: 50%;
         left: 0;
     }
 
