@@ -111,14 +111,39 @@
 
 
 {% block head %}
-    <title>Nos actions en images - ONG KAGNINMIN</title>
-    <meta name="description" content="L'ONG KAGNINMIN est une organisation ivoirienne engagée dans la valorisation du riche patrimoine culturel et touristique de la Côte d'Ivoire.">
+    {# === TITLE & DESCRIPTION === #}
+    <title>Galerie - {{ video.titre|default('Galerie') }} - ONG KAGNINMIN</title>
+    <meta name="description" content="{{ video.description|striptags|slice(0, 160)|default('Découvrez nos actions') }}">
 
-    <meta property="og:title" content="Nos actions en images - ONG KAGNINMIN">
-    <meta property="og:description" content="L'ONG KAGNINMIN est une organisation ivoirienne engagée dans la valorisation du riche patrimoine culturel et touristique de la Côte d'Ivoire.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ absolute_url(path('app_home')) }}">
-    <meta property="og:image" content="{{ absolute_url(asset('images/logo.jpg')) }}">
+    {# === Open Graph / Facebook === #}
+    <meta property="og:title" content="{{ video.titre|default('Galerie vidéo') }} - ONG KAGNINMIN">
+    <meta property="og:description" content="{{ video.description|striptags|slice(0, 160)|default('Découvrez nos actions') }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ absolute_url(path('app_video_show', {'slug': video.slug})) }}">
+
+    {# Image principale (très important) #}
+    {% if video.cover %}
+        <meta property="og:image" content="{{ absolute_url(asset('uploads/videos/cover/' ~ video.cover)) }}">
+    {% else %}
+        <meta property="og:image" content="{{ absolute_url(asset('images/autonomisation-circulaire.png')) }}">
+    {% endif %}
+
+    <meta property="og:site_name" content="ONG KAGNINMIN">
+    <meta property="og:locale" content="fr_FR">
+
+    {# === Twitter Cards === #}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ video.titre|default('Actualité') }} - ONG KAGNINMIN">
+    <meta name="twitter:description" content="{{ video.description|striptags|slice(0, 160)|default('Galerie video') }}">
+
+    {% if video.cover %}
+        <meta name="twitter:image" content="{{ absolute_url(asset('uploads/videos/cover/' ~ video.cover)) }}">
+    {% endif %}
+
+    {# Optionnel : Auteur / Date #}
+    {% if video.createdAt is defined %}
+        <meta property="article:published_time" content="{{ video.createdAt|date('c') }}">
+    {% endif %}
 {% endblock %}
 
 {% block extra_javascripts %}
