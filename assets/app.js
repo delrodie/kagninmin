@@ -1,6 +1,7 @@
 import './stimulus_bootstrap.js';
 import './js/scroll-animate.js';
 import './styles/app.css';
+import './styles/video.css';
 import './styles/btn-top.css';
 import './styles/responsive.css';
 

@@ -47,6 +47,7 @@ class PageViewListener
             str_starts_with($path, '/contact/footer') ||
             str_starts_with($path, '/backend') ||
             str_starts_with($path, '/login') ||
+            str_starts_with($path, '/footer') ||
             str_starts_with($path, '/_') ||
             $path === '/favicon.ico') {
             return;

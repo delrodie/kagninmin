@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Galerie Video{% endblock %}
+
+{% block turbo_frame %}
+    <turbo-frame id="main">
+        {% block body %}
+            <main>
+                <section class="page-title cover-background">
+                    <div class="container">
+                        <div class="row align-items-center small-screen">
+                            <div class="col-12 col-md-8">
+                                <h4 class="fw-semibold color-gold animate__animated animate__slideInUp ">Galerie</h4>
+
+                                <h1 class="animate__titre  fw-bold color-terra-dark">
+                                    Albums video
+                                </h1>
+                            </div>
+                            <div class="col-md-4 d-none d-md-block">
+                                <div class="animate__animated " data-animate="animate__zoomIn" data-parallax="0.3" data-duration="2.0s">
+                                    <figure>
+                                        <img src="{{ absolute_url(asset('images/autonomisation-circulaire.png')) }}" alt=""
+                                             class="img-fluid">
+                                    </figure>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="actualites" id="actualites">
+                    <div class="container animate__animated">
+                        <div class="my-5" style="color: #FDF8F0">.</div>
+                        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3">
+
+                            {% for video in videos %}
+                                <div class="col">
+                                    <div class="card h-100 rounded-0 border-0 shadow">
+                                        <a href="{{ absolute_url(path('app_video_show', {'slug': video.slug})) }}" class="text-decoration-none" data-turbo="false">
+                                            <figure class="overflow-hidden position-relative mb-0">
+
+                                                <img src="{{ absolute_url(asset('/uploads/videos/cover/' ~ video.cover)) }}" alt="{{ video.titre }}" class="card-img-top">
+
+                                                <figcaption class="video-overlay">
+                                                    <i class="bi bi-play-circle-fill play-icon-static"></i>
+                                                </figcaption>
+
+                                            </figure>
+
+                                        </a>
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <a href="{{ absolute_url(path('app_video_show', {'slug': video.slug})) }}" class="text-decoration-none color-terra" data-turbo="false">
+                                                    {{ video.titre }}
+                                                </a>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+                        <div class="my-5" style="color: #FDF8F0">.</div>
+
+                    </div>
+                </section>
+
+
+
+                <div {{ stimulus_controller('partenaire-loader',{ url: path('app_partenaire_list')}) }} style="margin-top: 100px;">
+                    <div data-partenaire-loader-target="content">
+                        <div class="text-center mt-5 p-5">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Chargement des partenaires...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        {% endblock %}
+    </turbo-frame>
+{% endblock %}
+
+
+{% block head %}
+    <title>Nos actions en images - ONG KAGNINMIN</title>
+    <meta name="description" content="L'ONG KAGNINMIN est une organisation ivoirienne engagée dans la valorisation du riche patrimoine culturel et touristique de la Côte d'Ivoire.">
+
+    <meta property="og:title" content="Nos actions en images - ONG KAGNINMIN">
+    <meta property="og:description" content="L'ONG KAGNINMIN est une organisation ivoirienne engagée dans la valorisation du riche patrimoine culturel et touristique de la Côte d'Ivoire.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ absolute_url(path('app_home')) }}">
+    <meta property="og:image" content="{{ absolute_url(asset('images/logo.jpg')) }}">
+{% endblock %}
